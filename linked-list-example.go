@@ -24,6 +24,8 @@ func main() {
 	} else {
 		fmt.Println("Middle item not found insertion failed")
 	}
+
+	node.deleteItem(40)
 	node.display()
 }
 
@@ -41,6 +43,27 @@ func (n *Node) addItem(item int){
 		}
 		current = current.next
 	}
+}
+
+func (n *Node) deleteItem(item int) (isFound bool) {
+	for i, current := 1, n.start; ; i, current = i + 1, current.next {
+		if i == 1 && item == current.item {
+			n.start = n.start.next
+			return true
+		}
+
+		if current.next.item == item {
+			// delete last node
+			if current.next.next == nil {
+				current.next = nil
+				return true
+			} else {
+				current.next = current.next.next
+				return true
+			}
+		}
+	}
+	return isFound
 }
 
 func (n *Node) insertItem(after int, item int) (isFound bool){
