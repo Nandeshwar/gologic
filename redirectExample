@@ -1,0 +1,16 @@
+package main
+
+import (
+	"net/http"
+	"log"
+)
+
+func main() {
+
+	mux := http.NewServeMux()
+	rh := http.RedirectHandler("http://www.yahoo.com", 307)
+	mux.Handle("/nks", rh)
+
+	log.Println("Listening...")
+	http.ListenAndServe(":9999", mux)
+}
