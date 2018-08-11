@@ -1,0 +1,51 @@
+package main
+
+import (
+	"fmt"
+)
+
+type closeFunc func()
+
+func (c closeFunc) Close() error {
+	fmt.Println("Before");
+	c()
+	fmt.Println("After")
+	return nil
+}
+
+type S struct {
+}
+
+func(s S) Close() {
+	fmt.Println("This is close of S")
+	
+}
+
+
+func main() {
+	s := S{}
+	
+	// k is type of closeFunc and assigned with function s.close. Can be declare and assigned in two lines. Example last section
+	
+	k := closeFunc(s.Close)
+	k.Close()
+	
+	fmt.Println("____________")
+	// Above two line is similar
+	var k2 closeFunc
+	k2 = s.Close
+	k2.Close()
+}
+
+
+/*
+output
+--------
+Before
+This is close of S
+After
+____________
+Before
+This is close of S
+After
+*/
