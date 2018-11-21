@@ -1,0 +1,67 @@
+package main
+
+import (
+	"bytes"
+	"encoding/binary"
+	"encoding/hex"
+	"fmt"
+	"log"
+)
+
+func main() {
+
+	// returns: 3930cafe
+	hexAsString := encode(12345, -54, 254)
+	fmt.Println(hexAsString)
+
+	// Decode  - 3930cafe  back to -> 12345, -54, 254
+	decode(hexAsString)
+}
+
+func encode(value1 uint16, value2 int8, value3 uint8) string {
+	buf := new(bytes.Buffer)
+	var data = []interface{}{
+		uint16(value1),
+		int8(value2),
+		uint8(value3),
+	}
+	for _, v := range data {
+		err := binary.Write(buf, binary.LittleEndian, v)
+		if err != nil {
+			fmt.Println("binary.Write failed:", err)
+		}
+	}
+
+	return fmt.Sprintf("%x", buf.Bytes())
+}
+
+func decode(HexBytesAsString string) {
+
+	//b := []byte{0x39, 0x30, 0xca, 0xfe}
+	//const s = "3930cafe"
+	
+	//decoded, err := hex.DecodeString(s)
+
+	decoded, err := hex.DecodeString(HexBytesAsString)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	//r := bytes.NewReader(b)
+	r := bytes.NewReader(decoded)
+
+	var data struct {
+		Value1 uint16
+		Value2 int8
+		Value3 uint8
+	}
+
+	if err := binary.Read(r, binary.LittleEndian, &data); err != nil {
+		fmt.Println("binary.Read failed:", err)
+	}
+
+	fmt.Println(data.Value1)
+	fmt.Println(data.Value2)
+	fmt.Println(data.Value3)
+
+}
