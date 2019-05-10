@@ -1,3 +1,39 @@
+
+
+"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/service/dynamodb"
+	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
+	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface"
+
+var db dynamodbiface.DynamoDBAPI = dynamodb.New(sess)
+	repo, err := repo.New(db, tableName, int64(recordFetchLimit))
+
+
+
+//go:generate mockgen -destination mock/mock_repo/mock_repo.go -source repo.go DataRepository
+type DataRepository interface {
+	ReadLocation(deviceID string, daysInPast int) ([]Location, error)
+	PutArbitraryJSON(arbitraryJSON map[string]interface{}) (*dynamodb.PutItemOutput, error)
+}
+
+type DynamoDB struct {
+	db    dynamodbiface.DynamoDBAPI
+	table string
+	Limit int64
+}
+
+func New(db dynamodbiface.DynamoDBAPI, table string, limit int64) (*DynamoDB, error) {
+	return &DynamoDB{
+		db:    db,
+		table: table,
+		Limit: limit,
+	}, nil
+}
+
+
+
+
+
 func (r *DynamoDB) queryBySortKeyRange(partitionKey, sortKeyLow, sortKeyHigh string) ([]map[string]*dynamodb.AttributeValue, error) {
 	attributeValue := map[string]*dynamodb.AttributeValue{
 		":partitionKeyVal": {
