@@ -62,6 +62,7 @@ Expected binary for 102 in 4 bytes: 0000 0000 0000 0000 0000 0000 0110 0110
 
 How to get?
 Method1:
+a0: left shift << by 12 bits:
 a1 : left shift << by 4 bits:
 a3: right shift >> by 4 bits:
 
@@ -112,7 +113,7 @@ func main() {
 		a3 int32
 	)
 
-	a0 = int32(rd.Val[0])
+	a0 = int32(rd.Val[0]) << 12
 	a1 = int32(rd.Val[1]) << 4
 	a2 = int32(rd.Val[2]) >> 4
 
