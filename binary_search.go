@@ -48,7 +48,7 @@ func binarySearch2(numList []int, item int, begin int, end int) (isFound bool){
 	if numList[mid] == item {
 		return true
 	} else if item < numList[mid] {
-		end = mid - 1
+		end = mid
 		return binarySearch2(numList, item, begin, end)
 	} else {
 		begin = mid + 1
