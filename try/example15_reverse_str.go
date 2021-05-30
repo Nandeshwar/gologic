@@ -5,8 +5,9 @@ import (
 )
 
 func main() {
-	str1 := "Nandeshwar"
+	str1 := "Ram"
 	str := []rune(str1)
+
 
 	fp := 0;
 	bp := len(str) - 1
