@@ -25,15 +25,15 @@ func TestValidateDates(t *testing.T) {
 		
 		pastReservationDate := "2021-09-28"
 		Convey("success: validate reservation date, arrival date, checkoutDate", func() {
-				reservationDate := "2021-09-29"
-				arrivalDate := "2021-09-29"
-				checkoutDate := "2021-09-29"
+				reservationDate := "2025-10-29"
+				arrivalDate := "2025-09-29"
+				checkoutDate := "2025-09-29"
 				actual := validateDates(reservationDate, arrivalDate, checkoutDate)
 				So(actual, ShouldBeTrue)
 			})
 			Convey(fmt.Sprintf("failure: reservationDate=%v should not be in the past", pastReservationDate), func() {
-				arrivalDate := "2021-09-29"
-				checkoutDate := "2021-09-29"
+				arrivalDate := "2025-09-29"
+				checkoutDate := "2025-09-29"
 				actual := validateDates(pastReservationDate, arrivalDate, checkoutDate)
 				So(actual, ShouldBeFalse)
 			})
