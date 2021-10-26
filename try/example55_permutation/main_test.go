@@ -18,5 +18,14 @@ func TestPermutation(t *testing.T) {
 			actual := permutation(str, left, right, []string{})
 			So(actual, ShouldResemble, expectedStrList)
 		})
+
+		Convey("success: testing permuations2 for abc", func() {
+			str := "abc"
+
+			expectedStrList := []string{"abc", "acb", "bac", "bca", "cab", "cba"}
+
+			actual := permutation2(str, "", []string{})
+			So(actual, ShouldResemble, expectedStrList)
+		})
 	})
 }
