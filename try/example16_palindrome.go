@@ -9,6 +9,13 @@ import (
 func main() {
 	fmt.Println(isPalindrome("Madam"))
 	fmt.Println(isPalindrome("Madam1"))
+	
+	fmt.Println("Palindrome solution using recursion")
+	s := "madam"
+	fmt.Println(isPalindromerecursive(s, 0, len(s)-1))
+	
+	s = "madam1"
+	fmt.Println(isPalindromerecursive(s, 0, len(s)-1))
 }
 
 func isPalindrome(s string) bool {
@@ -33,4 +40,14 @@ func isPalindrome(s string) bool {
 		j--
 	}
 	return true
+}
+
+func isPalindromerecursive(s string, l, r int) bool {
+	if l > r {
+		return true
+	}
+	if s[l] != s[r] {
+		return false
+	}
+	return isPalindromerecursive(s, l+1, r-1)
 }
