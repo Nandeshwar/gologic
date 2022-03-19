@@ -1,4 +1,5 @@
-// https://www.youtube.com/watch?v=Eb1A6nm_Nic&list=PLUcsbZa0qzu3yNzzAxgvSgRobdUUJvz7p&index=35
+// priority queue example
+// youtube: https://www.youtube.com/watch?v=Eb1A6nm_Nic&list=PLUcsbZa0qzu3yNzzAxgvSgRobdUUJvz7p&index=35
 package main
 
 import (
