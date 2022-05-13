@@ -1,0 +1,11 @@
+cosmos:
+  host: "my api"
+  tokenApi: "my token"
+  eventDetailApi: "my api"
+  apiThreads: "1000"
+  
+  user: "tool"
+  password: "abc"
+  
+  
+  

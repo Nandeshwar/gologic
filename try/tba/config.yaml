@@ -1,0 +1,81 @@
+cosmos:
+  host: "some host"
+  tokenApi: "token api"
+  scheduleApi: "some api"
+  ingestSource: "sourceg"
+  
+  user: "a"
+  password: "b"
+  
+mysql:
+  user: "admin"
+  password: "some pwd" # prod
+  #password: "some pwd" # dev
+  host: "localhost:5306" # Prod
+  #host: "localhost:3306"
+  db: "supair"
+  
+mongo:
+  host: "localhost:27017"
+  db: "channels"
+  channel: "mychannel"
+  distressHours: "36"
+  
+sims:
+  api:
+    fullResetUrl: "my url"
+    
+  # This csv file should have two columns: channel,provider_source_id
+  #ex. abc.csv
+  #channel,provider_source_id
+  #cnn,10142
+  fullResetFile: "full_reset.csv" 
+  
+gn:
+  username: "Nandeshwar"
+  password: "abc"
+  apiKey: "abc"
+  validProgramIdForConnectionTest: "EP025295541490"
+  programUrl: "url"
+  
+email: 
+  host: "localhost"
+  port: "2525" 
+   
+  # Add more recipients separated by comma within double quotes
+  # Ex: "nandeshwar.sah@dish.com"
+  recipients: "nandeshwar.sah@gmail.com.com"  
+                                       
+  
+  
+# action: tba_full_reset_file is required to full reset channels manually entered in file full_reset.csv
+tba:
+  action: "fix_soup_overlap" # action: tba_ims, tba_sims, tba_cosmos, tba_full_reset_file, soup_distressed_full_reset, soup_failed_full_reset
+                    # action: fix_soup_overlap
+  parserStatus: "false" # set it true at end of your operation and run program again to know program ids parsed by Parser
+  
+  # action: tba_cosmos
+  displayAllTBA: "true" # 
+  insertRecord: "false" # 
+  insertRecordFromCache: "false" # insert next 99(or recordFetchCount) record from cache
+  recordFetchCount: "2000"
+  
+  # action: tba-ims: tba fix 
+  # csv format
+  # CHANNEL_PROVIDER_ID,SHORT_NAME,Eastern Begin Time,Eastern End Time,NAME
+  # I-MGTV,MGTV,4/7/22 16:20,4/7/22 17:05,TBA...
+  # Note: date should be eastern time and should be in this format: 4/7/22 16:20
+  csvFile: "tba_04_26.csv"
+  insertCsvProgramIds: "false" # insert programIds not in catalog, to the table: supair_staging.load_stg_api_customdata 
+  fullResetImsData: "false" # if no TBA in GN, no TBA in cosmos, no TBA in sims, then only make it true for full reset. 
+                            # This process may take 2 to 3 hours base on number of channels. it took 2.5 hours for 4000 TBA channels
+  
+  # action: tba_sims
+  #steps to get this sims file: 
+ 
+  
+  jsonFile: "/Users/nandeshwar.sah/nks.json" 
+  #jsonFile: "/Users/nandeshwar.sah/sched_success_20220404_001.json"
+  insertSimsTBA: "false"
+  goRoutineCntSims: "1000"
+  
