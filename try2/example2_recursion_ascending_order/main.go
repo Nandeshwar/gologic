@@ -6,6 +6,8 @@ func main() {
 	printAsc(5)
 	fmt.Println("--------")
 	printDesc(5)
+	fmt.Println("print descreasing increasing")
+	printDescIncreasing(5)
 }
 
 // input: 5
@@ -24,4 +26,14 @@ func printDesc(n int) {
 	}
 	fmt.Println(n)
 	printDesc(n - 1)
+}
+
+func printDescIncreasing(n int) {
+	if n == 0 {
+		return
+	}
+	fmt.Println(n)
+	printDescIncreasing(n - 1)
+	fmt.Println(n)
+
 }

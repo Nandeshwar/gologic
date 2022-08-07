@@ -2,7 +2,7 @@ package main
 
 /*
 Some notes:
-  How to find bit for certain number
+  How to find bits  for certain number such as 13 - 1101
   1. divide number by 2 and put the remainder on side. Take the numbers from botton to top
   2. 13
     it is odd so    1
