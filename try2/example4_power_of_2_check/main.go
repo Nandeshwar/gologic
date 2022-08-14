@@ -18,9 +18,8 @@ func main() {
 }
 
 func isMulitplieOf2(num int) bool {
-	var r int
-	for i := 1; r < num; i++ {
-		r = i * 2
+	for i := 2; i < num; {
+		i = i * 2
 	}
 	return r == num
 }

@@ -25,19 +25,19 @@ Some notes:
    Binary Subtraction
    7 - 3
    find 2's complement of 3
-     11
+     011
 
 
-     00  ---- reverse
-     +1 ---- add 1
+     100  ---- reverse
+      +1 ---- add 1
      ---
-     10
+     101
 
 
      111
-     +10
+     101
     ---
-    1 0 1  -- 5
+     1 0 0  -- 4
 
     Binary xor
      1 1 ----0
