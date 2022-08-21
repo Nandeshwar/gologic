@@ -3,24 +3,24 @@ package main
 import "fmt"
 
 func main() {
-	num1, num2 := twoSumWithSortedArr([]int{7, 2, 10, 3, 4}, 9)
+	num1, num2 := twoSumWithSortedArr([]int{2, 3, 4, 7, 10}, 9)
 	fmt.Println(num1, num2)
 
 	num1, num2 = twoSumWithUnSortedArr([]int{7, 2, 10, 3, 4}, 9)
 	fmt.Println(num1, num2)
 
-	num1, num2, num3 := threeSum([]int{7, 1, 10, 1, 4}, 9)
+	num1, num2, num3 := threeSum([]int{1, 1, 4, 7, 10}, 9)
 	fmt.Println(num1, num2, num3)
 }
 
 func twoSumWithSortedArr(arr []int, target int) (int, int) {
 
 	for i, j := 0, len(arr)-1; i < j; {
-		if arr[i]+arr[j] < target {
-			i++
-		} else if arr[i]+arr[j] > target {
+		if target < arr[i]+arr[j] {
 			j--
-		} else if arr[i]+arr[j] == target {
+		} else if target > arr[i]+arr[j] {
+			i++
+		} else if target == arr[i]+arr[j] {
 			return arr[i], arr[j]
 		}
 	}
