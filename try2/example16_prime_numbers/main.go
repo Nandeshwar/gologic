@@ -41,7 +41,7 @@ func primePreprocessing() {
 	}
 
 	for i := 2; i*i <= N; i++ {
-		for j := i << 2; j <= N; j += i {
+		for j := i << 1; j <= N; j += i {
 			primeArr[j] = false
 		}
 	}

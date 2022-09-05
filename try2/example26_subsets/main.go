@@ -21,6 +21,19 @@ func main() {
 		fmt.Println(v)
 	}
 
+	fmt.Println("\n find3....")
+	findSubsets3("abc", 0, "")
+}
+
+func findSubsets3(input string, i int, result string) {
+	if i == len(input) {
+		fmt.Println(result)
+		return
+	}
+
+	appendedResult := result + string(input[i])
+	findSubsets3(input, i+1, appendedResult)
+	findSubsets3(input, i+1, result)
 }
 
 func findSubsets(input []rune, i int, result []string) {
