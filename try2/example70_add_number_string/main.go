@@ -33,7 +33,9 @@ func add(s1, s2 string) string {
 		s3 += fmt.Sprintf("%d", r)
 	}
 
-	s3 += string(carry)
+	if carry > 0 {
+		s3 += fmt.Sprint(carry)
+	}
 	var s4 string
 	for i := len(s3) - 1; i >= 0; i-- {
 		s4 += string(s3[i])
