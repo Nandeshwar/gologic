@@ -6,7 +6,7 @@ import (
 
 func main() {
 
-	fmt.Println("total path=", countPath(2, 2))
+	fmt.Println("total path=", countPath(3, 3))
 }
 
 func countPath(r, c int) int {
