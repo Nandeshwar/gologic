@@ -35,6 +35,9 @@ func main() {
 
 	a := []int{10, 20, 30, 40, 50}
 	fmt.Println("sort in reverse")
+	fmt.Println(sort.IntSlice(a))
+	sort.Ints(a)
+	fmt.Println(a)
 	sort.Sort(sort.Reverse(sort.IntSlice(a)))
 	fmt.Println(a)
 }
