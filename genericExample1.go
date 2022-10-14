@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 type Number interface {
-    int64 | float64
+    int64 | float64 | int
 }
 
 func main() {
@@ -40,6 +40,8 @@ func main() {
     fmt.Printf("Generic Sums with Constraint: %v and %v\n",
         SumNumbers(ints),
         SumNumbers(floats))
+        
+    fmt.Println("add all numbers=", AddAllNumbers([]float64{10.30, 20, 30}))
 }
 
 // SumInts adds together the values of m.
@@ -78,4 +80,12 @@ func SumNumbers[K comparable, V Number](m map[K]V) V {
         s += v
     }
     return s
+}
+
+func AddAllNumbers[V Number](vList []V) V {
+	var result V
+	for _, v := range vList {
+		result +=  v
+	}
+	return result
 }
