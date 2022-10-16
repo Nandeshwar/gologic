@@ -14,9 +14,12 @@ func findCelebrety(n int) int {
 	candidate := 0
 	for i := 1; i < n; i++ {
 		if know(candidate, i) {
+			fmt.Println("know....", candidate, " ", i)
 			candidate = i
 		}
 	}
+
+	fmt.Println("candidate=", candidate)
 
 	for i := 0; i < n; i++ {
 		if i != candidate && (know(candidate, i) || !know(i, candidate)) {
