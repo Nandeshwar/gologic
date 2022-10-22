@@ -35,3 +35,13 @@ func know(candidate, i int) bool {
 	}
 	return true
 }
+
+/*
+output
+bash-3.2$ go run main.go
+know.... 0   1
+know.... 1   2
+know.... 2   3
+candidate= 3
+3
+*/
