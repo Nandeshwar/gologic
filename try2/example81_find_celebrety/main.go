@@ -15,7 +15,7 @@ func findCelebrety(n int) int {
 	for i := 1; i < n; i++ {
 		if know(candidate, i) {
 			fmt.Println("know....", candidate, " ", i)
-			candidate = i
+			candidate = i // i holds next item and that will new candidate
 		}
 	}
 
