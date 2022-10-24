@@ -14,6 +14,16 @@ type Tree struct {
 		10
 	  7   9
 	5  6
+
+	output:
+	bash-3.2$ go run main.go
+t.item= 10
+t.item= 7
+t.item= 5
+t.item= 6
+t.item= 9
+sum= 27
+bash-3.2$
 */
 func main() {
 	five := Tree{item: 5}
@@ -34,10 +44,10 @@ func sumOfItemsBetween(t *Tree, l, r int) int {
 	if t.item >= l && t.item <= r {
 		sum += t.item
 	}
-	
-	// logic above calculate 1 and 
+
+	// logic above calculate 1 and
 	// below faith
-	
+
 	sum1 := sumOfItemsBetween(t.left, l, r)
 	sum2 := sumOfItemsBetween(t.right, l, r)
 

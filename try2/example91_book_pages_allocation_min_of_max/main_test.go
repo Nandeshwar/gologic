@@ -15,6 +15,7 @@ func TestMinOfMaxBookAllocation(t *testing.T) {
 				outputMinOfMaxPages int
 			}{
 				{inputArr: []int{10, 20, 30, 40}, inputStudent: 2, outputMinOfMaxPages: 60},
+				{inputArr: []int{10, 20, 30, 40, 50}, inputStudent: 2, outputMinOfMaxPages: 90},
 			}
 
 			for _, d := range data {
