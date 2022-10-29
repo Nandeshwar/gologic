@@ -29,24 +29,19 @@ func main() {
 }
 
 func pathSum(root *Node, sum int) bool {
-	if root == nil && sum != 0 {
+	if root == nil {
 		return false
 	}
 
-	if root == nil && sum == 0 {
+	if sum-root.item == 0 {
 		return true
 	}
 
-	rSum := sum - root.item
-	if rSum == 0 {
+	if pathSum(root.left, sum-root.item) {
 		return true
 	}
 
-	if pathSum(root.left, rSum) {
-		return true
-	}
-
-	if pathSum(root.right, rSum) {
+	if pathSum(root.right, sum-root.item) {
 		return true
 	}
 	return false
