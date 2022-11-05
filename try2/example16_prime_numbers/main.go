@@ -14,10 +14,10 @@ func main() {
 
 func isPrime1(num int) bool {
 
-	if num == 1 || num == 2 {
+	if  num == 2 {
 		return true
 	}
-	if num <= 0 {
+	if num <= 1 {
 		return false
 	}
 	for i := 2; i*i <= num; i++ {
@@ -36,7 +36,7 @@ func isPrime2(num int) bool {
 }
 
 func primePreprocessing() {
-	for i := 1; i <= 100; i++ {
+	for i := 2; i <= 100; i++ {
 		primeArr[i] = true
 	}
 
