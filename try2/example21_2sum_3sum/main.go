@@ -30,12 +30,12 @@ func twoSumWithSortedArr(arr []int, target int) (int, int) {
 func twoSumWithUnSortedArr(arr []int, target int) (int, int) {
 	m := map[int]int{}
 	for i := 0; i < len(arr); i++ {
-		v := target - arr[i]
-		_, ok := m[arr[i]]
+
+		v, ok := m[target-arr[i]]
 		if ok {
-			return v, arr[i]
+			return arr[i], v
 		}
-		m[v] = arr[i]
+		m[arr[i]] = arr[i]
 	}
 	return -1, -1
 }

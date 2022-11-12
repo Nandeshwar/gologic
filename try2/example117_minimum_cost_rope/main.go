@@ -37,6 +37,8 @@ func minCostRope(a []int) int {
 
 	newRope := 0
 	cost := 0
+	
+	// Remove two ropes and calculate cost and add the new added rope to heap
 	for h.Len() >= 2 {
 		element1 := heap.Pop(h)
 		element2 := heap.Pop(h)
