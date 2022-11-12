@@ -36,7 +36,6 @@ func topologicalOrder(graph [][]int, v int, visited []bool, stack *list.List) {
 
 	for _, u := range graph[v] {
 		if !visited[u] {
-			visited[u] = true
 			topologicalOrder(graph, u, visited, stack)
 		}
 	}
