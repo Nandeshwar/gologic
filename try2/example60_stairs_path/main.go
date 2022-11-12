@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	allPaths := stairsAllPath(4)
+	allPaths := stairsAllPath(4) // output: [1111 112 121 13 211 22 31]
 	fmt.Println(allPaths)
 }
 
