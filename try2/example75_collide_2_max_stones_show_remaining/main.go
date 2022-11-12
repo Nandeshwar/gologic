@@ -37,16 +37,18 @@ func main() {
 	// 1 will be answer
 	a := []int{1, 7, 2, 3, 8, 1, 1}
 
-	h := &IntHeap{}
-	heap.Init(h)
-	for _, item := range a {
-		heap.Push(h, item)
-	}
-	// fmt.Printf("minimum: %d\n", (*h)[0])
-	// for h.Len() > 0 {
-	// 	fmt.Printf("%d ", heap.Pop(h))
-	// }
+	/*
+		// this works too
+		h := &IntHeap{}
+		heap.Init(h)
+		for _, item := range a {
+			heap.Push(h, item)
+		}
+	*/
 
+	hh := IntHeap(a)
+	h := &hh
+	heap.Init(h)
 	for h.Len() >= 2 {
 		element1 := heap.Pop(h)
 		element2 := heap.Pop(h)
