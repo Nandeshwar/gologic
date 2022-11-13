@@ -15,10 +15,15 @@ func main() {
 		{3, 6},
 		{1, 2},
 		{5, 7}, // overlap here: 3-6, then 5-7
-		{8, 9},
+		{8, 11},
+		{10, 11},
+		{9, 11},
+		{11, 12},
 	}
 
 	fmt.Println(isOverlap(meetingTimesList))
+
+	fmt.Println(allOverlap(meetingTimesList))
 }
 
 func isOverlap(meetingTimesList []MeetingTimes) bool {
@@ -32,4 +37,22 @@ func isOverlap(meetingTimesList []MeetingTimes) bool {
 		}
 	}
 	return false
+}
+
+func allOverlap(meetingTimesList []MeetingTimes) []MeetingTimes {
+	var overlapMeetings []MeetingTimes
+
+	sort.Slice(meetingTimesList, func(i, j int) bool {
+		return meetingTimesList[i].start < meetingTimesList[j].start
+	})
+
+	goodMeeting := meetingTimesList[0]
+	for i := 1; i < len(meetingTimesList); i++ {
+		if meetingTimesList[i].start < goodMeeting.end {
+			overlapMeetings = append(overlapMeetings, meetingTimesList[i])
+		} else {
+			goodMeeting = meetingTimesList[i]
+		}
+	}
+	return overlapMeetings
 }
