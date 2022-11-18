@@ -6,7 +6,33 @@ func main() {
 	fmt.Println(fib1(10, -1, 1))
 	fmt.Println(fib2(10, -1, 1, []int{}))
 	fmt.Println(fib3(9, map[int]int{}))
+	fmt.Println("optimized algorithm")
+	fmt.Println("\n", fib(10))
+}
 
+func fib(n int) int {
+	a := 0
+	b := 1
+	c := -1
+
+	if n == 1 {
+		return 0
+	}
+	if n == 2 {
+		return 1
+	}
+	fmt.Print(0)
+	fmt.Print(" ", 1, " ")
+	n = n - 2
+	for n >= 1 {
+		n--
+
+		c = a + b
+		a = b
+		b = c
+		fmt.Print(" ", c)
+	}
+	return c
 }
 
 func fib1(n, v1, v2 int) []int {
