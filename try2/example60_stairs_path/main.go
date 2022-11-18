@@ -7,6 +7,7 @@ import (
 func main() {
 	allPaths := stairsAllPath(4) // output: [1111 112 121 13 211 22 31]
 	fmt.Println(allPaths)
+	fmt.Println(stairPath2(4))
 }
 
 // can jump 1 or 2 or 3
@@ -36,4 +37,17 @@ func stairsAllPath(n int) []string {
 		paths = append(paths, "3"+v)
 	}
 	return paths
+}
+
+func stairPath2(n int) int {
+	dp := make([]int, n+1)
+	dp[0] = 1
+	dp[1] = 1
+	dp[2] = dp[0] + dp[1]
+
+	for i := 3; i <= n; i++ {
+		dp[i] = dp[i-1] + dp[i-2] + dp[i-3]
+	}
+
+	return dp[n]
 }
