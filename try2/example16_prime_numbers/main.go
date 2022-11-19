@@ -14,14 +14,14 @@ func main() {
 
 func isPrime1(num int) bool {
 
-	if  num == 2 {
+	if num == 2 {
 		return true
 	}
 	if num <= 1 {
 		return false
 	}
 	for i := 2; i*i <= num; i++ {
-		if num&1 == 0 {
+		if num%i == 0 {
 			return false
 		}
 	}
