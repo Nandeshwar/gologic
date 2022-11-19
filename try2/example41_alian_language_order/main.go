@@ -25,7 +25,7 @@ func isWordsOrderSame(words []string, languageOrderStr string) bool {
 			l1 := len(words[i])
 			l2 := len(words[j])
 
-			min := int(math.Max(float64(l1), float64(l2)))
+			min := int(math.Min(float64(l1), float64(l2)))
 
 			for k := 0; k < min; k++ {
 				if languageOrder[iWord[k]-'a'] < languageOrder[jWord[k]-'a'] {

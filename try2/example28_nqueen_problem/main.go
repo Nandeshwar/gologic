@@ -70,3 +70,12 @@ func displayBoard(board [n][n]int) {
 		}
 	}
 }
+
+/*
+output:
+	0	0	1	0
+	1	0	0	0
+	0	0	0	1
+	0	1	0	0
+ true
+*/
