@@ -75,10 +75,10 @@ func heapDelete(a *[]int) int {
 
 		// Find max of left and right child and swap top item with max of left and right
 		max := 0
-		if leftChild < n-1 && (*a)[leftChild] < (*a)[rightChild] {
+		if leftChild < n && (*a)[leftChild] < (*a)[rightChild] {
 			max = rightChild
 
-		} else if rightChild < n-1 && (*a)[rightChild] <= (*a)[leftChild] {
+		} else if rightChild < n && (*a)[rightChild] <= (*a)[leftChild] {
 			max = leftChild
 		}
 
