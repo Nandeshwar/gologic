@@ -97,5 +97,4 @@ func heapDelete(a *[]int) int {
 		}
 	}
 	return item
-
 }

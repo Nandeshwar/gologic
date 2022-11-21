@@ -38,3 +38,11 @@ func allPaths(t *Tree, paths []int) [][]int {
 
 	return append(paths1, paths2...)
 }
+
+/*
+output:
+paths= [10 7 5]
+paths= [10 7 6]
+paths= [10 9]
+[[10 7 5] [10 7 6] [10 9]]
+*/
