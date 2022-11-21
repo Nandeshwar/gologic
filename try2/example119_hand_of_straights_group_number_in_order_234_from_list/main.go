@@ -87,13 +87,11 @@ func main() {
 		// 4. Remove from minHeap if their size is 1
 		endItem := top + groupSize
 		for item := top; item < endItem; item++ {
-			if item+1 < endItem {
-				nextItem := item + 1
-				_, ok := m[nextItem]
-				if !ok {
-					fmt.Println("Can not form window")
-					return
-				}
+
+			_, ok := m[item]
+			if !ok {
+				fmt.Println("Can not form window")
+				return
 			}
 
 			fmt.Println(item)
