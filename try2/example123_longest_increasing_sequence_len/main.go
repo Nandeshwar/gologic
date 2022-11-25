@@ -6,9 +6,9 @@ import (
 
 /*
 input: 	a := []int{1, 7, 8, 4, 5, 6, -1, 9}
--- create tmpArr with ascending order 1, 7, 8 
+-- create tmpArr with ascending order 1, 7, 8
 -- if any number less than end (here 4 < 8)
--- replace 1st item greater than 4 with 4 . here 7 is > 4 
+-- replace 1st item greater than 4 with 4 . here 7 is > 4
 -- then 1st item greater than 5....here 8 now 8 and replace it with 5 and since it last item, make it max
 
 
@@ -72,20 +72,26 @@ func lis(a []int) int {
 
 func putItemInSamePlaceOrRightAfterSmallerItem(tmpArr []int, item int) {
 
-	for i := 0; i < len(tmpArr); i++ {
-		if item == tmpArr[i] {
+	beg := 0
+	end := len(tmpArr) - 1
+
+	for beg <= end {
+		mid := beg + (end-beg)/2
+		if tmpArr[mid] == item {
+			if mid == len(tmpArr)-1 {
+				max = tmpArr[mid]
+			}
 			return
 		}
 
-		// reach to last in arr that is greater than item
-		for item > tmpArr[i] {
-			i++
+		if item < tmpArr[mid] {
+			end = mid - 1
+		} else {
+			beg = mid + 1
 		}
-		tmpArr[i] = item
-
-		if i == len(tmpArr)-1 {
-			max = item
-		}
-		break
+	}
+	tmpArr[beg] = item
+	if beg == len(tmpArr)-1 {
+		max = tmpArr[beg]
 	}
 }
