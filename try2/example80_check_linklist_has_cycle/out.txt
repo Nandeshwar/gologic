@@ -1,0 +1,4 @@
+fast and slow meet point= 5
+slow node just before cycle node= 5
+
+cycle=true, cyclePoint=2
