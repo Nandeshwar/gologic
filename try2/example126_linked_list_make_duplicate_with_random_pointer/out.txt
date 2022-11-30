@@ -1,0 +1,40 @@
+val= 1 next.val= 2 random.val= 3
+val= 2 next.val= 3 random.val= 1
+val= 3 next.val= 4 random.val= 3
+val= 4 next.val= 5 random.val= 2
+val= 5 next.val= 0 random.val= 4
+New Node...
+val= 1 next.val= 2 random.val= 3
+val= 2 next.val= 3 random.val= 1
+val= 3 next.val= 4 random.val= 3
+val= 4 next.val= 5 random.val= 2
+val= 5 next.val= 0 random.val= 4
+new logic. order of n and no space
+Display currently created structure with just duplicate node.
+val= 1 next.val= 1 random.val= 3
+val= 1 next.val= 2 random.val= 0
+val= 2 next.val= 2 random.val= 1
+val= 2 next.val= 3 random.val= 0
+val= 3 next.val= 3 random.val= 3
+val= 3 next.val= 4 random.val= 0
+val= 4 next.val= 4 random.val= 2
+val= 4 next.val= 5 random.val= 0
+val= 5 next.val= 5 random.val= 4
+val= 5 next.val= 0 random.val= 0
+Now let's assign random pointer and display
+val= 1 next.val= 1 random.val= 3
+val= 1 next.val= 2 random.val= 3
+val= 2 next.val= 2 random.val= 1
+val= 2 next.val= 3 random.val= 1
+val= 3 next.val= 3 random.val= 3
+val= 3 next.val= 4 random.val= 3
+val= 4 next.val= 4 random.val= 2
+val= 4 next.val= 5 random.val= 2
+val= 5 next.val= 5 random.val= 4
+val= 5 next.val= 0 random.val= 4
+Duplicate nodes created by algorithm two O(n) time complexity and no space 
+val= 1 next.val= 2 random.val= 3
+val= 2 next.val= 3 random.val= 1
+val= 3 next.val= 4 random.val= 3
+val= 4 next.val= 5 random.val= 2
+val= 5 next.val= 0 random.val= 4

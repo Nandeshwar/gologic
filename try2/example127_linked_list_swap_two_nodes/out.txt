@@ -1,0 +1,11 @@
+1
+2
+3
+4
+5
+After swaping 2 nodes at a time
+2
+1
+4
+3
+5
