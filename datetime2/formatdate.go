@@ -16,9 +16,30 @@ func main() {
 	fmt.Println("default timeNow", defaultTimeNow)
 
 	past := time.Now().AddDate(0, 0, -7).UTC()
+
 	pastUTC := time.Date(past.Year(), past.Month(), past.Day(), 0, 0, 0, 0, time.UTC)
 	pastUTCStr := pastUTC.Format("2006-01-02T15:04:00Z")
 	fmt.Println(pastUTCStr)
+	fmt.Println(past.Format("2006-01-02T15:04:00Z"))
+	past = past.Add(1 * time.Hour)
+	fmt.Println(past.Format("2006-01-02T15:04:00Z"))
+
+	hr := 1
+	past = past.Add(time.Duration(hr) * time.Hour)
+	fmt.Println(past.Format("2006-01-02T15:04:00Z"))
+
+	/*
+					output:
+					bash-3.2$ go run formatdate.go
+		localTime 2022-12-02 15:01:18.417084 -0700 MST
+		UTC time= 2022-12-02 22:01:18.417084 +0000 UTC
+		default timeNow 2022-12-02 15:01:18.417084 -0700 MST m=+0.000085589
+		2022-11-25T00:00:00Z
+		2022-11-25T22:01:00Z
+		2022-11-25T23:01:00Z
+		2022-11-26T00:01:00Z
+
+	*/
 }
 
 // 1. No Date should be in past
