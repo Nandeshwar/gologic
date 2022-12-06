@@ -13,22 +13,34 @@ type Tree struct {
 func main() {
 	/*
 				10
-			8		11
-		7     5		   12
+			8		13
+		7     9	   12
 	*/
 
-	five := &Tree{item: 5}
+	nine := &Tree{item: 5}
 	seven := &Tree{item: 7}
 	twelve := &Tree{item: 12}
-	eight := &Tree{item: 8, left: seven, right: five}
-	eleven := &Tree{item: 11, right: twelve}
-	head := &Tree{item: 10, left: eight, right: eleven}
+	eight := &Tree{item: 8, left: seven, right: nine}
+	thirteen := &Tree{item: 13, right: twelve}
+	head := &Tree{item: 10, left: eight, right: thirteen}
 
-	//fmt.Println(findAncestor(head, 7, 5))
-	fmt.Println(findAncestor(head, 11, 12))
+	fmt.Println(findAncestor(head, 7, 9))
+	fmt.Println(findAncestor(head, 13, 12))
+	fmt.Println(findAncestor2(head, 13, 12))
 }
 
-func findAncestor(head *Tree, node1, node2 int) int {
+func findAncestor(head *Tree, item1, item2 int) int {
+	
+	if item1 < head.item && item2 < head.item {
+		return findAncestor(head.left, item1, item2)
+	} else if item1 > head.item && item2 > head.item {
+		return findAncestor(head.right, item1, item2)
+	} else {
+		return head.item
+	}
+}
+
+func findAncestor2(head *Tree, node1, node2 int) int {
 	var ancestor int
 
 	if head == nil {
@@ -47,11 +59,11 @@ func findAncestor(head *Tree, node1, node2 int) int {
 		return head.item
 	}
 
-	leftAncestor := findAncestor(head.left, node1, node2)
+	leftAncestor := findAncestor2(head.left, node1, node2)
 	if leftAncestor != 0 {
 		return leftAncestor
 	}
-	rightAncestor := findAncestor(head.right, node1, node2)
+	rightAncestor := findAncestor2(head.right, node1, node2)
 	if rightAncestor != 0 {
 		return rightAncestor
 	}
