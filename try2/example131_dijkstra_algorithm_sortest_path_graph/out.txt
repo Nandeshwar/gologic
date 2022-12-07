@@ -1,0 +1,19 @@
+Graph= [[[1 10] [2 5]] [[4 3]] [[3 2]] [[4 3]] [[5 2]] [[]]]
+vertex= 0 weight= 0
+edges= [1 10]
+edges= [2 5]
+vertex= 2 weight= 5
+edges= [3 2]
+vertex= 3 weight= 7
+edges= [4 3]
+vertex= 1 weight= 10
+edges= [4 3]
+vertex= 4 weight= 10
+edges= [5 2]
+vertex= 4 weight= 10
+edges= [5 2]
+vertex= 5 weight= 12
+edges= []
+vertex= 5 weight= 12
+edges= []
+tmpArr= [0 10 5 7 10 12]
