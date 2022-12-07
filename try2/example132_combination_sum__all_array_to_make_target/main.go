@@ -13,6 +13,10 @@ func main() {
 	ind := 0
 	getAllArraysToTarget(a, ind, target, &result, &ds)
 	fmt.Println("result=", result)
+	fmt.Println("Total arrays count=")
+	cnt := 0
+	getAllArraysToTargetCount(a, ind, target, &cnt)
+	fmt.Println("cnt=", cnt)
 }
 
 func getAllArraysToTarget(a []int, ind int, target int, result *[][]int, ds *[]int) {
@@ -35,6 +39,24 @@ func getAllArraysToTarget(a []int, ind int, target int, result *[][]int, ds *[]i
 	}
 
 	getAllArraysToTarget(a, ind+1, target, result, ds)
+
+}
+
+func getAllArraysToTargetCount(a []int, ind int, target int, count *int) {
+
+	if ind == len(a) {
+
+		if target == 0 {
+			*count = *count + 1
+		}
+		return
+	}
+	if a[ind] <= target {
+
+		getAllArraysToTargetCount(a, ind, target-a[ind], count)
+	}
+
+	getAllArraysToTargetCount(a, ind+1, target, count)
 
 }
 
