@@ -19,6 +19,7 @@ func main() {
 	fmt.Println("cnt=", cnt)
 
 	fmt.Println("cnt=", getAllArraysToTargetCountReturn(a, ind, target, 0))
+	fmt.Println("cnt=", getAllArraysToTargetCountReturn2(a, ind, target))
 }
 
 func getAllArraysToTarget(a []int, ind int, target int, result *[][]int, ds []int) {
@@ -78,6 +79,26 @@ func getAllArraysToTargetCountReturn(a []int, ind int, target int, count int) in
 
 	return getAllArraysToTargetCountReturn(a, ind+1, target, count)
 
+}
+
+func getAllArraysToTargetCountReturn2(a []int, ind int, target int) int {
+
+	if ind == len(a) {
+
+		if target == 0 {
+			return 1
+		}
+		return 0
+	}
+	var left = 0
+	if a[ind] <= target {
+
+		left = getAllArraysToTargetCountReturn2(a, ind, target-a[ind])
+	}
+
+	right := getAllArraysToTargetCountReturn2(a, ind+1, target)
+
+	return left + right
 }
 
 /*
