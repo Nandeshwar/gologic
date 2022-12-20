@@ -12,6 +12,10 @@ func main() {
 	var ds []string
 	visited := make([]bool, len(s))
 	permutations2(s, ds, visited)
+	fmt.Println("Algorith3...")
+	var ans []string
+	permutations3(s, 0, len(s), &ans)
+	fmt.Println(ans)
 }
 
 func permutations(s string, left, right int) {
@@ -43,6 +47,20 @@ func permutations2(s string, ds []string, visited []bool) {
 			ds = ds[:len(ds)-1]
 			visited[i] = false
 		}
+	}
+}
+
+func permutations3(s string, left, right int, ans *[]string) {
+
+	if left == right {
+		*ans = append(*ans, s)
+		return
+	}
+
+	for i := left; i < right; i++ {
+		s = swap(s, i, left)
+		permutations3(s, left+1, right, ans)
+		s = swap(s, i, left)
 	}
 }
 
