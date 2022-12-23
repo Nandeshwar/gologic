@@ -58,7 +58,7 @@ func getLeftSmallerIndex(a []int) []int {
 		for ds.Len() != 0 {
 			topElement := ds.Back().Value
 			topIndex := topElement.(int)
-			if topIndex == -1 || a[topIndex] < v {
+			if a[topIndex] < v {
 				leftSmallerIndexArr[i] = topIndex
 				ds.PushBack(i)
 				break
@@ -69,7 +69,7 @@ func getLeftSmallerIndex(a []int) []int {
 		}
 
 		if ds.Len() == 0 {
-			ds.PushBack(-1)
+			ds.PushBack(i)
 			leftSmallerIndexArr[i] = -1
 			continue
 		}
@@ -85,12 +85,8 @@ func getRightSmallerIndex(a []int) []int {
 		for ds.Len() != 0 {
 			topElement := ds.Back().Value
 			topIndex := topElement.(int)
-			if topIndex == -1 || a[topIndex] < a[i] {
-				if topIndex == -1 {
-					rightSmallerIndexArr[i] = 9
-				} else {
-					rightSmallerIndexArr[i] = topIndex
-				}
+			if a[topIndex] < a[i] {
+				rightSmallerIndexArr[i] = topIndex
 				ds.PushBack(i)
 				break
 			} else {
