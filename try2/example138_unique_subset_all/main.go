@@ -30,6 +30,7 @@ func subset(a []int, ind int, ds []int, ans *[][]int) {
 	*ans = append(*ans, t)
 
 	for i := ind; i < len(a); i++ {
+		//  iteration: pick one item, and if 2nd item is same, do not pick that to avoid duplicate result
 		if i > ind && a[i] == a[i-1] {
 			continue
 		}
