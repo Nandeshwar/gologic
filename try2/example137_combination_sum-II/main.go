@@ -34,6 +34,7 @@ func combinationSum(a []int, ind int, target int, ds []int, ans *[][]int) {
 	}
 
 	for i := ind; i < len(a); i++ {
+		// in this loop: avoid picking same element again to avoid duplicate combination
 		if i > ind && a[i] == a[i-1] {
 			continue
 		}
