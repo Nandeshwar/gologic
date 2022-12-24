@@ -5,6 +5,9 @@ import (
 )
 
 /*
+	number can be random in in forward direction
+	here: output: 1, 4, 5, 6, 9
+
 input: 	a := []int{1, 7, 8, 4, 5, 6, -1, 9}
 -- create tmpArr with ascending order 1, 7, 8
 -- if any number less than end (here 4 < 8)
