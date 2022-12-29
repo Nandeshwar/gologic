@@ -45,11 +45,6 @@ func main() {
 	deltaRow := []int{-1, 1, 0, 0}
 	deltaCol := []int{0, 0, -1, 1}
 
-	// deltaRow := []int{-1, 0, +1, 0}
-	// deltaCol := []int{0, +1, 0, -1}
-
-	b[initLocationX][initLocationY] = newColor
-
 	floodFill2(&b, initLocationX, initLocationY, oldColor, newColor, 3, 3, deltaRow, deltaCol)
 
 	fmt.Println("")
@@ -79,11 +74,11 @@ func floodFill(a *[][]int, i, j, oldColor, newColor, rl, cl int) {
 }
 
 func floodFill2(a *[][]int, i, j, oldColor, newColor, rl, cl int, deltaRow, deltaCol []int) {
-	for k := 0; k < 4; k++ {
+	if i < 0 || j < 0 || i >= rl || j >= cl || (*a)[i][j] != oldColor || (*a)[i][j] == newColor {
+		return
+	}
 
-		if i < 0 || j < 0 || i >= rl || j >= cl || (*a)[i][j] != oldColor || (*a)[i][j] == newColor {
-			return
-		}
+	for k := 0; k < 4; k++ {
 
 		if (*a)[i][j] == oldColor {
 			(*a)[i][j] = newColor
