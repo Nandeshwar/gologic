@@ -9,12 +9,21 @@ func main() {
 			board[i][j] = '-'
 		}
 	}
-	nqueen(&board, 0)
+
+	result := [][4][4]byte{}
+	nqueen(&board, 0, &result)
+	fmt.Println("result=")
+	for i := 0; i < len(result); i++ {
+		display(result[i])
+	}
+
 }
 
-func nqueen(board *[4][4]byte, col int) {
+func nqueen(board *[4][4]byte, col int, result *[][4][4]byte) {
 	if col == 4 {
 		display(*board)
+		
+		*result = append(*result, *board)
 		return
 	}
 
@@ -22,7 +31,7 @@ func nqueen(board *[4][4]byte, col int) {
 		if rightPlace(*board, i, col) {
 			(*board)[i][col] = 'Q'
 
-			nqueen(board, col+1)
+			nqueen(board, col+1, result)
 
 			(*board)[i][col] = '-'
 		}
@@ -30,6 +39,7 @@ func nqueen(board *[4][4]byte, col int) {
 }
 
 func display(board [4][4]byte) {
+
 	fmt.Println("")
 	for i := 0; i < 4; i++ {
 		fmt.Println("")
