@@ -40,6 +40,7 @@ func main() {
 				maxArea= 12
 	*/
 	a := []int{4, 2, 1, 5, 6, 3, 2, 4, 2}
+	fmt.Println(a)
 	leftSmallerIndexArr := getLeftSmallerIndex(a)
 	fmt.Println("leftSmallerIndexArr=", leftSmallerIndexArr)
 	rightSmallerIndexArr := getRightSmallerIndex(a)
