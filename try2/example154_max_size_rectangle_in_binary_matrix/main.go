@@ -60,14 +60,11 @@ func findAreaInHistogram(a []int) int {
 
 	left := make([]int, len(a))
 
-	stack.PushBack(-1)
-	left[0] = -1
-
-	for i := 1; i < len(a); i++ {
+	for i := 0; i < len(a); i++ {
 		for stack.Len() != 0 {
 			topElement := stack.Back().Value
 			top := topElement.(int)
-			if top == -1 || a[top] < a[i] {
+			if a[top] < a[i] {
 				left[i] = top
 				stack.PushBack(i)
 				break
@@ -76,29 +73,33 @@ func findAreaInHistogram(a []int) int {
 				continue
 			}
 		}
+
+		if stack.Len() == 0 {
+			stack.PushBack(i)
+			left[0] = -1
+		}
 	}
 
 	right := make([]int, len(a))
 	stack.Init()
-	right[len(a)-1] = 5
-	stack.PushBack(-1)
 
 	for i := len(a) - 1; i >= 0; i-- {
 		for stack.Len() != 0 {
 			topElement := stack.Back().Value
 			top := topElement.(int)
-			if top == -1 || a[top] < a[i] {
-				if top == -1 {
-					right[i] = 5
-				} else {
-					right[i] = top
-				}
+			if a[top] < a[i] {
+				right[i] = top
 				stack.PushBack(i)
 				break
 			} else {
 				stack.Remove(stack.Back())
 				continue
 			}
+		}
+
+		if stack.Len() == 0 {
+			right[i] = 5
+			stack.PushBack(i)
 		}
 	}
 
