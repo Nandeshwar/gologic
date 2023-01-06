@@ -26,7 +26,7 @@ func decodingWaysCount(a string) int {
 	for i := 1; i < len(a); i++ {
 		if a[i-1] == '0' && a[i] == '0' { // 100
 			dp[i] = 0
-		} else if a[i-1] == '0' && a[i] != '0' { // ex 10
+		} else if a[i-1] == '0' && a[i] != '0' { // ex 101
 			dp[i] = dp[i-1]
 		} else if a[i-1] != '0' && a[i] == '0' { // 110
 			if a[i-1] == '1' || a[i-1] == '2' {
