@@ -19,6 +19,18 @@ func main() {
 	fmt.Println("Going to delete")
 	fmt.Println(heapDelete(&a))
 	fmt.Println(a)
+	fmt.Println(heapDelete(&a))
+	fmt.Println(a)
+	fmt.Println(heapDelete(&a))
+	fmt.Println(a)
+	fmt.Println(heapDelete(&a))
+	fmt.Println(a)
+	fmt.Println(heapDelete(&a))
+	fmt.Println(a)
+	fmt.Println(heapDelete(&a))
+	fmt.Println(a)
+	fmt.Println(heapDelete(&a))
+	fmt.Println(a)
 }
 
 func heapInsert(a *[]int, item int) {
@@ -47,26 +59,24 @@ func heapInsert(a *[]int, item int) {
 }
 
 func heapDelete(a *[]int) int {
-	n := len(*a)
-	if n <= 1 {
+	n := len(*a) - 1
+	if n < 0 {
 		return 0
 	}
+	// in case only 1 item
+	if n == 1 {
+		return (*a)[1]
+	}
 
-	// in case of only 1 item
 	topIndex := 1
 	item := (*a)[topIndex]
 
-	if n == 2 {
-		*a = []int{(*a)[0]}
-		return item
-	}
-
 	// swap last item with 1st item
-	(*a)[topIndex], (*a)[n-1] = (*a)[n-1], (*a)[topIndex]
+	(*a)[topIndex], (*a)[n] = (*a)[n], (*a)[topIndex]
 
 	// avoid last item
 	n = n - 1
-	(*a) = (*a)[0:n]
+	(*a) = (*a)[0 : n+1]
 
 	i := 1
 	for {
@@ -76,15 +86,15 @@ func heapDelete(a *[]int) int {
 		// Find max of left and right child and swap top item with max of left and right
 		max := 0
 		// if both child present
-		if leftChild < n && rightChild < n {
+		if leftChild <= n && rightChild <= n {
 			if (*a)[leftChild] < (*a)[rightChild] {
 				max = rightChild
 			} else {
 				max = leftChild
 			}
-		} else if leftChild < n {
+		} else if leftChild <= n {
 			max = leftChild
-		} else if rightChild < n {
+		} else if rightChild <= n {
 			max = rightChild
 		}
 
