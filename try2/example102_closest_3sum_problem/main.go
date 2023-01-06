@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"sort"
 )
 
@@ -26,7 +25,7 @@ func threeSumClosestNumber(a []int, targetSum int) int {
 		for j < k {
 			sumHere := a[i] + a[j] + a[k]
 
-			if math.Abs(float64(sumHere-targetSum)) < math.Abs(float64(result-targetSum)) {
+			if Abs(sumHere-targetSum) < Abs(result-targetSum) {
 				result = sumHere
 			}
 
@@ -48,4 +47,11 @@ func threeSumClosestNumber(a []int, targetSum int) int {
 		}
 	}
 	return result
+}
+
+func Abs(num int) int {
+	if num < 0 {
+		return -1 * num
+	}
+	return num
 }
