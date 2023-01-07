@@ -13,6 +13,10 @@ func main() {
 	ind := 0
 	getAllArraysToTarget(a, ind, target, &result, ds)
 	fmt.Println("result=", result)
+	fmt.Println("algorithm 2")
+	result = [][]int{}
+	getAllArraysToTarget2(a, ind, target, &result, ds, 0)
+	fmt.Println("result=", result)
 	fmt.Println("Total arrays count=")
 	cnt := 0
 	getAllArraysToTargetCount(a, ind, target, &cnt)
@@ -42,6 +46,31 @@ func getAllArraysToTarget(a []int, ind int, target int, result *[][]int, ds []in
 	}
 
 	getAllArraysToTarget(a, ind+1, target, result, ds)
+
+}
+
+func getAllArraysToTarget2(a []int, ind int, target int, result *[][]int, ds []int, sum int) {
+
+	if target == sum {
+		fmt.Println("(*ds)=", ds)
+		d := make([]int, len(ds))
+		copy(d, ds)
+		*result = append(*result, d)
+		return
+	}
+
+	if ind >= len(a) || sum > target {
+		return
+	}
+
+	ds = append(ds, a[ind])
+	sum += a[ind]
+
+	getAllArraysToTarget2(a, ind, target, result, ds, sum)
+	ds = (ds)[:len(ds)-1]
+	sum -= a[ind]
+
+	getAllArraysToTarget2(a, ind+1, target, result, ds, sum)
 
 }
 
