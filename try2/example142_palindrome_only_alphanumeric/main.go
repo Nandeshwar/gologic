@@ -18,11 +18,11 @@ func isPalindrome(str string) bool {
 	j := len(str) - 1
 
 	for i < j {
-		if !unicode.IsLetter(rune(str[i])) {
+		if !unicode.IsDigit(rune(str[i])) && !unicode.IsLetter(rune(str[i])) {
 			i++
 			continue
 		}
-		if !unicode.IsLetter(rune(str[j])) {
+		if !unicode.IsDigit(rune(str[i])) && !unicode.IsLetter(rune(str[j])) {
 			j--
 			continue
 		}
