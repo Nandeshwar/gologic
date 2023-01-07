@@ -97,15 +97,16 @@ func findCheapestFlight(graph [][]flight) []int {
 			totalCost := cost + hCost
 			if totalCost < tmpArr[hVertex] {
 				tmpArr[hVertex] = totalCost
+
+				newFlight := flight{
+					stop:   stop,
+					vertex: hVertex,
+					cost:   totalCost,
+				}
+
+				heap.Push(h, newFlight)
 			}
 
-			newFlight := flight{
-				stop:   stop,
-				vertex: hVertex,
-				cost:   totalCost,
-			}
-
-			heap.Push(h, newFlight)
 		}
 	}
 	return tmpArr
