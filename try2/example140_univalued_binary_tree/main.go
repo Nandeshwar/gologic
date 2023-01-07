@@ -39,6 +39,34 @@ func main() {
 	one = &Tree{item: 1, left: one3, right: one4}
 	root2 := &Tree{item: 1, left: one, right: two}
 	fmt.Println(checkUniValuedBinaryTree(root2))
+
+	one4 = &Tree{item: 1}
+	one3 = &Tree{item: 1}
+	two = &Tree{item: 2}
+	one = &Tree{item: 1, left: one3, right: one4}
+	root3 := &Tree{item: 1, left: one, right: two}
+
+	var item int
+	if root3 != nil {
+		item = root3.item
+	}
+	fmt.Println(checkUniValuedBinaryTree2(root3, item))
+
+}
+
+func checkUniValuedBinaryTree2(root *Tree, item int) bool {
+	if root == nil {
+		return true
+	}
+
+	if root.item != item {
+		return false
+	}
+
+	left := checkUniValuedBinaryTree2(root.left, item)
+	right := checkUniValuedBinaryTree2(root.right, item)
+
+	return left && right
 }
 
 func checkUniValuedBinaryTree(root *Tree) bool {
