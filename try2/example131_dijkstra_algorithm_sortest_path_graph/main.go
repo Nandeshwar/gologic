@@ -75,10 +75,9 @@ func main() {
 				// also push adjNode with its weight from source to heap
 				if weight+edgeWeight < tmpArr[adjNode] {
 					tmpArr[adjNode] = weight + edgeWeight
+					heap.Push(h, []int{adjNode, tmpArr[adjNode]})
 				}
-				heap.Push(h, []int{adjNode, tmpArr[adjNode]})
 			}
-
 		}
 	}
 
