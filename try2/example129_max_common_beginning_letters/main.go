@@ -14,17 +14,15 @@ func main() {
 	}
 
 	fmt.Println("minWordLen=", minWordLen)
-
+outer:
 	for i := 0; i < minWordLen; i++ {
-		cnt := 1
 		for j := 1; j < len(input); j++ {
-			if string(input[0][i]) == string(input[j][i]) {
-				cnt++
+			if string(input[0][i]) != string(input[j][i]) {
+				break outer
 			}
 		}
-		if cnt == len(input) {
-			result += string(input[0][i])
-		}
+
+		result += string(input[0][i])
 	}
 
 	fmt.Println("longest common prefix=", result)
