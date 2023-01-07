@@ -15,9 +15,9 @@ func main() {
 
 func hasAlternateBits(num int) bool {
 	for num != 0 {
-		prev := num % 2
+		prev := num % 2 // or prev := num & 1
 		num = num >> 1
-		curr := num % 2
+		curr := num % 2 // or curr := num & 1
 		num = num >> 1
 
 		if prev == curr {
