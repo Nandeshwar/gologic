@@ -10,13 +10,13 @@ func main() {
 }
 
 func findFirstUniqueLetter(str string) int {
-	m := map[string]int{}
+	m := map[rune]int{}
 	for i, c := range str {
-		_, ok := m[string(c)]
+		_, ok := m[c]
 		if ok {
-			m[string(c)] = -1
+			m[c] = -1
 		} else {
-			m[string(c)] = i
+			m[c] = i
 		}
 	}
 
