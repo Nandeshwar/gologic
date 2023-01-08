@@ -62,9 +62,7 @@ func floodFill(a *[][]int, i, j, oldColor, newColor, rl, cl int) {
 		return
 	}
 
-	if (*a)[i][j] == oldColor {
-		(*a)[i][j] = newColor
-	}
+	(*a)[i][j] = newColor
 
 	floodFill(a, i+1, j, oldColor, newColor, 3, 3)
 	floodFill(a, i-1, j, oldColor, newColor, 3, 3)
