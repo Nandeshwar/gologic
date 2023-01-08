@@ -11,6 +11,10 @@ func main() {
 
 	num1, num2, num3 := threeSum([]int{1, 1, 4, 7, 10}, 9)
 	fmt.Println(num1, num2, num3)
+
+	fmt.Println("Three sum algo2")
+	num1, num2, num3 = threeSumAlgo2([]int{1, 1, 4, 7, 10}, 9)
+	fmt.Println(num1, num2, num3)
 }
 
 func twoSumWithSortedArr(arr []int, target int) (int, int) {
@@ -47,5 +51,26 @@ func threeSum(arr []int, target int) (int, int, int) {
 			return a, b, arr[i]
 		}
 	}
+	return -1, -1, -1
+}
+
+func threeSumAlgo2(a []int, target int) (int, int, int) {
+
+	for i := 0; i < len(a)-2; i++ {
+		j := i + 1
+		k := len(a) - 1
+
+		for j < k {
+			sumHere := a[i] + a[j] + a[k]
+			if sumHere == target {
+				return a[i], a[j], a[k]
+			} else if sumHere > target {
+				k--
+			} else {
+				i++
+			}
+		}
+	}
+
 	return -1, -1, -1
 }
