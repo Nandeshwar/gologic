@@ -24,11 +24,11 @@ func isMonotonicArr(a []int) bool {
 	descendingOrder := true
 	for i := 0; i < len(a)-1; i++ {
 		if a[i] < a[i+1] {
-			ascendingOrder = false
+			descendingOrder = false
 		}
 
 		if a[i] > a[i+1] {
-			descendingOrder = false
+			ascendingOrder = false
 		}
 	}
 
