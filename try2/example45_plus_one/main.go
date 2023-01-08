@@ -19,10 +19,7 @@ func plusOne(a []int) []int {
 			a[i] = 0
 		}
 	}
-	var b []int
-	if i == -1 {
-		b = append(b, 1)
-		b = append(b, a...)
-	}
+
+	b := append([]int{1}, a...)
 	return b
 }
