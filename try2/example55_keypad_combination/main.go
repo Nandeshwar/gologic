@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 var code = []string{"abc", "cde", "efg", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz"}
@@ -17,11 +16,7 @@ func getKpc(keys string) []string {
 		return []string{""}
 	}
 
-	key := string(keys[0])
-	keyInt, err := strconv.Atoi(key)
-	if err != nil {
-		fmt.Println("error=", err.Error())
-	}
+	keyInt := int(keys[0] - '0')
 
 	remaningKeys := string(keys[1:])
 	remainingResult := getKpc(remaningKeys)
