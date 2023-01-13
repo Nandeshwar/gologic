@@ -39,12 +39,8 @@ func sumInEachRow(t *Node, row int, m map[int]int) {
 	v := m[row]
 	m[row] = max(v, t.item)
 
-	if t.left != nil {
-		sumInEachRow(t.left, row+1, m)
-	}
-	if t.right != nil {
-		sumInEachRow(t.right, row+1, m)
-	}
+	sumInEachRow(t.left, row+1, m)
+	sumInEachRow(t.right, row+1, m)
 }
 
 func max(a, b int) int {
