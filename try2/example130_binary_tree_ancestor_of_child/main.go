@@ -30,7 +30,10 @@ func main() {
 }
 
 func findAncestor(head *Tree, item1, item2 int) int {
-	
+	if head == nil {
+		return 0
+	}
+
 	if item1 < head.item && item2 < head.item {
 		return findAncestor(head.left, item1, item2)
 	} else if item1 > head.item && item2 > head.item {
