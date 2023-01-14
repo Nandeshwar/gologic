@@ -51,15 +51,17 @@ func getAllArraysToTarget(a []int, ind int, target int, result *[][]int, ds []in
 
 func getAllArraysToTarget2(a []int, ind int, target int, result *[][]int, ds []int, sum int) {
 
-	if target == sum {
-		fmt.Println("(*ds)=", ds)
-		d := make([]int, len(ds))
-		copy(d, ds)
-		*result = append(*result, d)
+	if ind == len(a) {
+		if target == sum {
+			fmt.Println("(*ds)=", ds)
+			d := make([]int, len(ds))
+			copy(d, ds)
+			*result = append(*result, d)
+		}
 		return
 	}
 
-	if ind >= len(a) || sum > target {
+	if sum > target {
 		return
 	}
 
