@@ -10,6 +10,8 @@ func main() {
 	copy(b, a)
 	c := make([]int, len(a))
 	copy(c, a)
+	d := make([]int, len(a))
+	copy(d, a)
 
 	fmt.Println("original array=", a)
 	a = removeDuplicateFromSortedArr(a)
@@ -18,6 +20,22 @@ func main() {
 	fmt.Println(b)
 	c = removeDuplicateFromSortedArr2(c)
 	fmt.Println(c)
+
+	d = removeDuplicateFromSortedArr2(d)
+	fmt.Println(d)
+}
+
+func removeDuplate3(a []int) []int {
+	ind := 1
+	if len(a) == 1 {
+		return a
+	}
+	for i := 1; i < len(a); i++ {
+		if a[ind-1] != a[i] {
+			a[ind] = a[i]
+		}
+	}
+	return a[0:ind]
 }
 
 func removeDuplicateFromSortedArr(a []int) []int {
