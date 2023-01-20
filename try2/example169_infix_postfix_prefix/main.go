@@ -164,43 +164,23 @@ func convertInfixToPostfixAndPrefix(infix string) (string, string) {
 		switch {
 		case c >= 'a' && c <= 'z':
 			fallthrough
+
 		case c >= 'A' && c <= 'Z':
 			fallthrough
+
 		case c >= 0 && c <= 9:
 			prefix.PushBack(string(c) + " ")
 			postfix.PushBack(string(c) + " ")
+
 		case c == '(':
 			operators.PushBack(string(c))
-		case c == ')':
-			opElement := operators.Back().Value
-			op := opElement.(string)
-			for op != "(" {
 
-				element2 := postfix.Remove(postfix.Back())
-				fmt.Println("element2=", element2)
-				element1 := postfix.Remove(postfix.Back())
-				fmt.Println("elment1=", element1)
-
-				secondPost := element2.(string)
-				firstPost := element1.(string)
-
-				element2 = prefix.Remove(prefix.Back())
-				element1 = prefix.Remove(prefix.Back())
-
-				secondPre := element2.(string)
-				firstPre := element1.(string)
-
-				postfix.PushBack(firstPost + secondPost + op)
-				prefix.PushBack(firstPre + secondPre + op)
-
-				operators.Remove(operators.Back())
-
-				opElement = operators.Back().Value
-				op = opElement.(string)
-
-			}
-			operators.Remove(operators.Back())
-
+		// when operator comes
+		// pop operator from stack until it reaches bracket (
+		// if stack is empty - insert newly coming operator
+		// if top operator is (    -> then insert newly appeared operator and out
+		// else
+		// keep poping top operator  and process until it is < than newly coming operator
 		case c == '+' || c == '-' || c == '*' || c == '/':
 			if operators.Len() == 0 {
 				operators.PushBack(string(c))
@@ -215,12 +195,12 @@ func convertInfixToPostfixAndPrefix(infix string) (string, string) {
 				continue
 			}
 
-			fmt.Println("hello2.....")
 			cPrecedence := findPrecedence(c)
 			for operators.Len() > 0 {
 				topOperatorElement := operators.Back().Value
 				topOperator := topOperatorElement.(string)
 				topOperatorPrecedence := findPrecedence(rune(topOperator[0]))
+				
 				if op == "(" || topOperatorPrecedence < cPrecedence {
 					break
 				}
@@ -246,7 +226,35 @@ func convertInfixToPostfixAndPrefix(infix string) (string, string) {
 			}
 
 			operators.PushBack(string(c))
+		case c == ')':
+			opElement := operators.Back().Value
+			op := opElement.(string)
+			for op != "(" {
+
+				element2 := postfix.Remove(postfix.Back())
+				element1 := postfix.Remove(postfix.Back())
+
+				secondPost := element2.(string)
+				firstPost := element1.(string)
+
+				element2 = prefix.Remove(prefix.Back())
+				element1 = prefix.Remove(prefix.Back())
+
+				secondPre := element2.(string)
+				firstPre := element1.(string)
+
+				postfix.PushBack(firstPost + secondPost + op)
+				prefix.PushBack(firstPre + secondPre + op)
+
+				operators.Remove(operators.Back())
+
+				opElement = operators.Back().Value
+				op = opElement.(string)
+
+			}
+			operators.Remove(operators.Back())
 		}
+
 	}
 
 	var prefixResult string
