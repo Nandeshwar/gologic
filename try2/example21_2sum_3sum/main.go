@@ -67,7 +67,7 @@ func threeSumAlgo2(a []int, target int) (int, int, int) {
 			} else if sumHere > target {
 				k--
 			} else {
-				i++
+				j++
 			}
 		}
 	}
