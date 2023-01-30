@@ -1,5 +1,36 @@
 package main
 
+/*
+	use of stack:
+	  implement queue using 2 stacks:
+	    3
+		2
+		1
+		
+		  ->   get from stack1 and put in stack2
+				     1
+		             2
+		             3
+					
+					remove from stack
+					
+					
+	use of queue:
+	    implement stack using two queues
+		1 
+		   q1
+		       
+			
+			if two or more than two times
+			  move 1 to q2 and insert next item(2 here) in q1 and move all items from q2 to q1
+			  1
+				    to q2
+					
+		     put 2 to q1
+			     move items from q2
+		   q1: 2, 1
+*/
+
 import (
 	"fmt"
 )
