@@ -23,6 +23,9 @@ func main() {
 
 	d = removeDuplicateFromSortedArr2(d)
 	fmt.Println(d)
+
+	fmt.Println("Remove duplicate from unsorted array")
+	fmt.Println(RemoveDuplicateFromUnSortedArr([]int{0, 1, 3, 3, 2, 4, 5, 4, 4, 5, 3}))
 }
 
 func removeDuplate3(a []int) []int {
@@ -36,6 +39,21 @@ func removeDuplate3(a []int) []int {
 		}
 	}
 	return a[0:ind]
+}
+
+func RemoveDuplicateFromUnSortedArr(a []int) []int {
+	m := map[int]struct{}{}
+
+	ind := 0
+	for _, v := range a {
+		_, ok := m[v]
+		if !ok {
+			a[ind] = v
+			ind++
+		}
+		m[v] = struct{}{}
+	}
+	return a[:ind]
 }
 
 func removeDuplicateFromSortedArr(a []int) []int {
