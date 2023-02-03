@@ -16,7 +16,7 @@ func main() {
 
 func isPalindrome(i, j int, str string) bool {
 	for i < j {
-		if str[i] != usstr[j] {
+		if str[i] != str[j] {
 			return isPalindrome2(i+1, j, str) || isPalindrome2(i, j-1, str)
 		}
 
