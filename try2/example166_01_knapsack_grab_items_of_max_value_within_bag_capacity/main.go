@@ -62,7 +62,7 @@ func findMaxValues2(weights, values []int, bagCapacity, ind int, m map[string]in
 	var pick int
 	var notPick int
 	if weights[ind] <= bagCapacity {
-		notPick = values[ind] + findMaxValues2(weights, values, bagCapacity, ind-1, m)
+		notPick = values[ind] + findMaxValues2(weights, values, bagCapacity-weights[ind], ind-1, m)
 		pick = values[ind-1] + findMaxValues2(weights, values, bagCapacity-weights[ind], ind-2, m)
 	}
 
