@@ -20,7 +20,7 @@ func main() {
 	fmt.Println("infix from postfix=", infix)
 
 	fmt.Println("Algorithm2: ")
-	infix = "a + b"
+	infix = "a+b"
 	postfix, prefix := convertInfixToPostfixAndPrefix(infix)
 	fmt.Println("postfix=", postfix)
 	fmt.Println("prefix=", prefix)
@@ -200,7 +200,7 @@ func convertInfixToPostfixAndPrefix(infix string) (string, string) {
 				topOperatorElement := operators.Back().Value
 				topOperator := topOperatorElement.(string)
 				topOperatorPrecedence := findPrecedence(rune(topOperator[0]))
-				
+
 				if op == "(" || topOperatorPrecedence < cPrecedence {
 					break
 				}
@@ -221,7 +221,7 @@ func convertInfixToPostfixAndPrefix(infix string) (string, string) {
 				op := opElement.(string)
 
 				postfix.PushBack(firstPost + secondPost + op)
-				prefix.PushBack(firstPre + secondPre + op)
+				prefix.PushBack(op + firstPre + secondPre)
 
 			}
 
@@ -260,6 +260,9 @@ func convertInfixToPostfixAndPrefix(infix string) (string, string) {
 	var prefixResult string
 	var postfixResult string
 
+	display(operators)
+	display(postfix)
+
 	for operators.Len() > 0 {
 		opElement := operators.Remove(operators.Back())
 		op := opElement.(string)
@@ -276,8 +279,13 @@ func convertInfixToPostfixAndPrefix(infix string) (string, string) {
 		secondPre := element2.(string)
 		firstPre := element1.(string)
 
-		postfixResult += firstPost + secondPost + op
-		prefixResult += op + firstPre + secondPre
+		postfix.PushBack(firstPost + secondPost + op)
+		prefix.PushBack(op + firstPre + secondPre)
+		fmt.Println("stack len=", postfix.Len())
+		display(postfix)
+
+		//postfixResult += firstPost + secondPost + op
+		//prefixResult += op + firstPre + secondPre
 
 	}
 
@@ -297,4 +305,19 @@ func convertInfixToPostfixAndPrefix(infix string) (string, string) {
 
 	return postfixResult, prefixResult
 
+}
+
+func display(stack *list.List) {
+	fmt.Println("----items in stack----")
+	var a []string
+	for stack.Len() != 0 {
+		element := stack.Remove(stack.Back())
+		top := element.(string)
+		a = append(a, top)
+	}
+
+	for i := len(a) - 1; i >= 0; i-- {
+		stack.PushBack(a[i])
+	}
+	fmt.Println("items in stack=", a)
 }
