@@ -19,6 +19,29 @@ func main() {
 	k := 4
 
 	fmt.Println(putDashAfterKLen(str, k))
+	fmt.Println(putDashAfterKLen2(str, k))
+}
+
+func putDashAfterKLen2(str string, k int) string {
+	var nwStr string
+
+	cnt := 0
+	for i := len(str) - 1; i >= 0; i-- {
+		if string(str[i]) == "-" {
+			continue
+		}
+		cnt++
+
+		if cnt == 5 {
+			nwStr = string(str[i]) + "-" + nwStr
+			cnt = 1
+			continue
+		}
+
+		nwStr = string(str[i]) + nwStr
+	}
+
+	return nwStr
 }
 
 func putDashAfterKLen(str string, k int) string {
