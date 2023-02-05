@@ -41,11 +41,19 @@ func main() {
 	for i := 0; i < len(dp); i++ {
 		dp[i] = -1
 	}
+
+	dp3 := make([]int, len(a))
+	for i := 0; i < len(dp3); i++ {
+		dp3[i] = -1
+	}
 	minSteps := frogJump(a, len(a)-1, dp)
 	fmt.Println("min steps=", minSteps)
 
 	minSteps2 := frogJump2(a)
 	fmt.Println("bottom up approach = min steps=", minSteps2)
+
+	minSteps3 := frogJump3(a, 0, dp3)
+	fmt.Println("approach3 = min steps=", minSteps3)
 }
 
 func frogJump(a []int, ind int, dp []int) int {
@@ -113,4 +121,30 @@ func frogJump2(a []int) int {
 	}
 
 	return dp[len(a)-1]
+}
+
+func frogJump3(a []int, ind int, dp []int) int {
+	if ind >= len(a) {
+		return 0
+	}
+
+	if dp[ind] > -1 {
+		fmt.Println("dp is helping")
+		return dp[ind]
+	}
+
+	var left int
+	if ind < len(a)-1 {
+
+		left = frogJump3(a, ind+1, dp) + abs(a[ind+1]-a[ind])
+	}
+	fmt.Println("left=", left)
+	right := int(^uint(0) >> 1)
+	if ind < len(a)-2 {
+		right = frogJump3(a, ind+2, dp) + abs(a[ind+2]-a[ind])
+	}
+	fmt.Println("right=", right)
+	m := min(left, right)
+	dp[ind] = m
+	return m
 }
