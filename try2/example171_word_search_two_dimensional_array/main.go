@@ -6,12 +6,12 @@ import (
 
 func main() {
 	a := [][]rune{
-		{'a', 'b', 'c'},
-		{'r', 'a', 'm'},
-		{'g', 'o', 'p'},
+		{'a', 'm', 'm'},
+		{'k', 'a', 'r'},
+		{'m', 'o', 'p'},
 	}
 
-	word := "mpo"
+	word := "ram"
 
 	for i := 0; i < 3; i++ {
 		for j := 0; j < 3; j++ {
@@ -39,12 +39,11 @@ func search(a [][]rune, word string, row, col int, count int) bool {
 		return false
 	}
 
-	tmp := a[row][col]
-	ans := search(a, word, row+1, col, count+1) ||
+	//tmp := a[row][col]
+	return search(a, word, row+1, col, count+1) ||
 		search(a, word, row-1, col, count+1) ||
 		search(a, word, row, col+1, count+1) ||
 		search(a, word, row, col-1, count+1)
-	a[row][col] = tmp
-	return ans
+	//a[row][col] = tmp
 
 }
