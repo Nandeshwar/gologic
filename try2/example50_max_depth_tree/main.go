@@ -26,6 +26,17 @@ func main() {
 	fmt.Println(findMaxDepth1(t, 0))
 	fmt.Println(findMaxDepth2(t))
 	fmt.Println(findMaxDepth3(t))
+
+	fmt.Println("height of binary tree=", height(t))
+}
+
+func height(t *Node) int {
+	if t == nil {
+		return 0
+	}
+
+	return max(height(t.left), height(t.right)) + 1
+
 }
 
 func findMaxDepth1(t *Node, row int) int {
@@ -36,10 +47,7 @@ func findMaxDepth1(t *Node, row int) int {
 	lh := findMaxDepth1(t.left, row+1)
 	rh := findMaxDepth1(t.right, row+1)
 
-	if lh > rh {
-		return lh
-	}
-	return rh
+	return max(lh, rh)
 }
 
 func findMaxDepth2(t *Node) int {
@@ -50,10 +58,7 @@ func findMaxDepth2(t *Node) int {
 	lh := findMaxDepth2(t.left) + 1
 	rh := findMaxDepth2(t.right) + 1
 
-	if lh > rh {
-		return lh
-	}
-	return rh
+	return max(lh, rh)
 }
 
 func findMaxDepth3(t *Node) int {
@@ -86,4 +91,11 @@ func findMaxDepth3(t *Node) int {
 		}
 	}
 	return height
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
