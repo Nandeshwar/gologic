@@ -26,6 +26,8 @@ func main() {
 
 	fmt.Println("Remove duplicate from unsorted array")
 	fmt.Println(RemoveDuplicateFromUnSortedArr([]int{0, 1, 3, 3, 2, 4, 5, 4, 4, 5, 3}))
+
+	fmt.Println(removeDuplate3([]int{0, 0, 1, 1, 2, 2, 2, 3, 3, 4}))
 }
 
 func removeDuplate3(a []int) []int {
@@ -36,6 +38,7 @@ func removeDuplate3(a []int) []int {
 	for i := 1; i < len(a); i++ {
 		if a[ind-1] != a[i] {
 			a[ind] = a[i]
+			ind++
 		}
 	}
 	return a[0:ind]
