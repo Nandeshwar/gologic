@@ -11,6 +11,9 @@ func main() {
 	fmt.Println("using dynamic programming")
 	coinCnt = coinCountDp(a, 18)
 	fmt.Println("total coin count=", coinCnt)
+
+	fmt.Println("Algorithm2....")
+	fmt.Println(coinCount2(a, 18, 0, []int{}))
 }
 
 func coinCount(a []int, sum int) int {
@@ -58,4 +61,25 @@ func coinCountDp(a []int, sum int) int {
 
 	m[sum] = ans
 	return ans
+}
+
+func coinCount2(a []int, target, ind int, ds []int) int {
+	if ind == len(a) {
+		ans := int(^uint(0) >> 1)
+		if target == 0 {
+
+			ans = len(ds)
+		}
+		return ans
+	}
+
+	ans1 := int(^uint(0) >> 1)
+	if a[ind] <= target {
+		ds = append(ds, a[ind])
+		ans1 = coinCount2(a, target-a[ind], ind, ds)
+		ds = ds[0 : len(ds)-1]
+	}
+	ans2 := coinCount2(a, target, ind+1, ds)
+
+	return min(ans1, ans2)
 }
