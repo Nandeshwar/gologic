@@ -23,11 +23,18 @@ func main() {
 
 	*/
 
-	mp := maxPoints(a, len(a)-1, 3) // 3 means no activity
+	dp := make([][]int, len(a))
+	for i := 0; i < len(a); i++ {
+		dp[i] = make([]int, 4)
+		for j := 0; j < 4; j++ {
+			dp[i][j] = -1
+		}
+	}
+	mp := maxPoints(a, len(a)-1, 3, dp) // 3 means no activity
 	fmt.Println("max points=", mp)
 }
 
-func maxPoints(a [][]int, day, lastActiviy int) int {
+func maxPoints(a [][]int, day, lastActiviy int, dp [][]int) int {
 	if day == 0 {
 		var m int
 
@@ -40,13 +47,19 @@ func maxPoints(a [][]int, day, lastActiviy int) int {
 		return m
 	}
 
+	if dp[day][lastActiviy] != -1 {
+		fmt.Println("dp working")
+		return dp[day][lastActiviy]
+	}
+
 	var m int
 	for i := 0; i < 3; i++ {
 		if i != lastActiviy {
-			points := a[day][i] + maxPoints(a, day-1, i)
+			points := a[day][i] + maxPoints(a, day-1, i, dp)
 			m = max(m, points)
 		}
 	}
+	dp[day][lastActiviy] = m
 	return m
 }
 
