@@ -1,6 +1,7 @@
 package main
 
 import (
+	"container/list"
 	"fmt"
 )
 
@@ -31,12 +32,15 @@ func fruitsInBasket(a []int, basket int) int {
 	var maxFruits int
 	m := make(map[int]int)
 
+	dll := list.New()
+
 	for i := 0; i < basket; i++ {
 		v, ok := m[a[i]]
 		if ok {
 			m[a[i]] = v + 1
 		} else {
 			m[a[i]] = 1
+			dll.PushBack(a[i])
 		}
 	}
 
@@ -55,7 +59,10 @@ func fruitsInBasket(a []int, basket int) int {
 
 		if len(m) > 2 {
 
-			firstItemInWindow := i - basket
+			element := dll.Remove(dll.Front())
+
+			firstItemInWindow := element.(int)
+			dll.PushBack(a[i])
 			delete(m, a[firstItemInWindow])
 		}
 		maxFruits = max(maxFruits, countFruits(m))
