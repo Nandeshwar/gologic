@@ -9,7 +9,7 @@ import (
 type InitHeap [][]int
 
 func (h InitHeap) Len() int           { return len(h) }
-func (h InitHeap) Less(i, j int) bool { return h[i][1] < h[j][1] }
+func (h InitHeap) Less(i, j int) bool { return h[i][1] < h[j][1] }  // organize by meeting which ends first. 
 func (h InitHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
 
 func (h *InitHeap) Push(item any) {
@@ -33,7 +33,7 @@ func main() {
 	}
 	/*
 		 1. sort by start time for loop and run loop from 2nd item
-		 2. Sort by end time and put 1st item in heap
+		 2. heap logic : sort by end time and put 1st item in heap
 		 3. get item from heap and call it previous
 		 4. start loop from 2nd item
 		 5. check if current(2nd item) start date < previous end date
