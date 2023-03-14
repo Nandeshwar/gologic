@@ -12,12 +12,12 @@ func balancedStrCount(str string) int {
 	totalBalanceString := 0
 	cnt := 0
 	for _, v := range str {
-		s := string(v)
+		s := v
 
 		switch s {
-		case "R", "r":
+		case 'R', 'r':
 			cnt++
-		case "L", "l":
+		case 'L', 'l':
 			cnt--
 		}
 
