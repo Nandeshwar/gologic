@@ -31,6 +31,15 @@ func main() {
 	fmt.Println(maxWidth)
 }
 
+/*
+	Algorithm:
+	  row level traversal
+	     1. root index: 0
+		 2. left index: 2 * current_index + 1
+		 3. rith index  2 * current_index + 2
+	  once row is done:
+	      right_index - left_index = will be width of respective row
+*/
 func findMaxWidth(root *Tree) int {
 	type Pair struct {
 		node  *Tree
