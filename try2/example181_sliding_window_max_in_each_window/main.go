@@ -22,29 +22,9 @@
 package main
 
 import (
-	"container/heap"
 	"container/list"
 	"fmt"
 )
-
-type InitHeap []int
-
-func (h InitHeap) Len() int           { return len(h) }
-func (h InitHeap) Less(i, j int) bool { return h[i] > h[j] }
-func (h InitHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
-
-func (h *InitHeap) Push(item any) {
-	*h = append(*h, item.(int))
-}
-
-func (h *InitHeap) Pop() any {
-	a := *h
-	l := len(a)
-	item := a[l-1]
-	a = a[:l-1]
-	*h = a
-	return item
-}
 
 func main() {
 	a := []int{1, 5, 2, 3, 7, 6, 8} // expected output: 5, 5, 7, 7, 8
@@ -52,8 +32,6 @@ func main() {
 	fmt.Println("original array=", a)
 	m1 := maxInEachWindowAlgo1(a, window)
 	fmt.Println(m1)
-	m2 := maxInEachWindowAlgo2(a, window)
-	fmt.Println(m2)
 	m3 := maxInEachWindowAlgo3(a, window)
 	fmt.Println(m3)
 }
@@ -71,66 +49,12 @@ func maxInEachWindowAlgo1(a []int, window int) []int {
 	return result
 }
 
-func maxInEachWindowAlgo2(a []int, window int) []int {
-	var result []int
-	h := &InitHeap{}
-	heap.Init(h)
-
-	m := map[int]int{}
-
-	for i := 0; i < len(a); i++ {
-		v, ok := m[a[i]]
-		if ok {
-			v++
-			m[a[i]] = v
-		} else {
-			m[a[i]] = 1
-		}
-	}
-
-	for i := 0; i < window; i++ {
-		heap.Push(h, a[i])
-	}
-
-	element := heap.Pop(h)
-	item := element.(int)
-	v := m[item]
-	if v > 1 {
-		v--
-		m[item] = v
-		heap.Push(h, item)
-	} else {
-		delete(m, item)
-	}
-
-	result = append(result, item)
-
-	for i := window; i < len(a); i++ {
-		heap.Push(h, a[i])
-
-		element := heap.Pop(h)
-		item := element.(int)
-		v := m[item]
-		if v > 1 {
-			v--
-			m[item] = v
-			heap.Push(h, item)
-		} else {
-			delete(m, item)
-		}
-
-		result = append(result, item)
-	}
-
-	return result
-}
-
 func maxInEachWindowAlgo3(a []int, window int) []int {
 	var result []int
 	q := list.New()
 
 	for i := 0; i < len(a); i++ {
-		// remove  out of window boundary items from front - when window slides, remove 1st item
+		// remove item from front of queue when window slides
 		if q.Len() != 0 {
 			frontElementIndex := q.Front().Value
 			frontIndex := frontElementIndex.(int)
@@ -140,7 +64,9 @@ func maxInEachWindowAlgo3(a []int, window int) []int {
 			}
 		}
 
-		// keep removing smallest items from last
+		// maintain max item in fron of queue:
+		//in order to do this, keep removing smallest items from last of queue comparing with current
+		// then insert max item index
 		for q.Len() != 0 {
 			lastIndexElement := q.Back().Value
 			lastIndex := lastIndexElement.(int)
@@ -152,9 +78,10 @@ func maxInEachWindowAlgo3(a []int, window int) []int {
 			}
 		}
 
+		// insert index
 		q.PushBack(i)
 
-		// add front items in result, one item from each window
+		// when index >= window, add front items in result, one item from each window
 		if i >= window-1 {
 			frontIndexElement := q.Front().Value
 			frontIndex := frontIndexElement.(int)
