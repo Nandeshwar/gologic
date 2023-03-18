@@ -78,7 +78,7 @@ func findMaxWidth(root *Tree) int {
 		}
 
 		// once rowLen == 0, then lastIndex - firstIndex + 1  will be width of that row
-		if q.Len() != 0 {
+		if rowLen == 0 && q.Len() != 0 {
 			firstElement := q.Front().Value
 			lastElement := q.Back().Value
 			firstPair := firstElement.(Pair)
