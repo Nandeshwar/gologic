@@ -19,24 +19,24 @@ func main() {
 	fmt.Println("result=", result)
 }
 
-func allPalindrome(str string, result *[][]string, path []string, idx int) {
+func allPalindrome(str string, result *[][]string, palindromeStr []string, idx int) {
 	if idx == len(str) {
-		tmp := make([]string, len(path))
-		copy(tmp, path)
+		tmp := make([]string, len(palindromeStr))
+		copy(tmp, palindromeStr)
 		*result = append(*result, tmp)
 		return
 	}
 
-	// loop is for paritioning. 
+	// loop is for paritioning.
 	// 1. first iteration: partition at 0 index, check string 0 to 0 + 1 is palindrome
 	// 2. 2nd iteration:   partition at 0 index, check string 0 to 0 + 2 is palindrome
 	// 3. 3rd iteration:   partition at 0 index, check string 0 to 0 + 3 is palindrome
 	//   At every iteration there is recursive call
 	for i := idx; i < len(str); i++ {
 		if isPalindrome(str[idx : i+1]) {
-			path = append(path, str[idx:i+1])
-			allPalindrome(str, result, path, i+1)
-			path = path[:len(path)-1]
+			palindromeStr = append(palindromeStr, str[idx:i+1])
+			allPalindrome(str, result, palindromeStr, i+1)
+			palindromeStr = palindromeStr[:len(palindromeStr)-1]
 		}
 	}
 }
