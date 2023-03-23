@@ -29,7 +29,12 @@ func main() {
 	root := &Tree{item: 3, left: five, right: two}
 
 	convertBinaryTreeToDllInorder(root)
+	
 	/*
+		   3
+		5		2
+		      1
+			4   6
 		output:
 		5
 		3
