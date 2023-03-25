@@ -32,27 +32,22 @@ func main() {
 	paths := [][]int{}
 	currentPath := []int{}
 	sum := 21
-	allPaths(root, &paths, &currentPath, sum)
+	allPaths(root, &paths, currentPath, sum)
 
 	fmt.Println(paths)
 }
 
-func allPaths(root *Tree, paths *[][]int, currentPath *[]int, sum int) {
+func allPaths(root *Tree, paths *[][]int, currentPath []int, sum int) {
 	if root == nil {
 		return
 	}
 
-	*currentPath = append(*currentPath, root.item)
+	currentPath = append(currentPath, root.item)
 	if root.item == sum && root.left == nil && root.right == nil {
-		*paths = append(*paths, *currentPath)
+		*paths = append(*paths, currentPath)
 		return
 	}
 
-	var newCurrentPath []int
-	newCurrentPath = append(newCurrentPath, (*currentPath)...)
-	allPaths(root.left, paths, &newCurrentPath, sum-root.item)
-
-	var newCurrentPath2 []int
-	newCurrentPath2 = append(newCurrentPath2, (*currentPath)...)
-	allPaths(root.right, paths, &newCurrentPath2, sum-root.item)
+	allPaths(root.left, paths, currentPath, sum-root.item)
+	allPaths(root.right, paths, currentPath, sum-root.item)
 }
