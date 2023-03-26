@@ -6,6 +6,7 @@ import (
 
 func main() {
 	a := []int{-1, -2, -3, 4, 5, 6, -2}
+	// dp= [-1 -3 -6 -2 3 9 7]
 	// sum(0, 3) = -1 + (-2) + (-3) + 4 = -2
 	// sum(2, 4) = -3 + 4 + 5 = 6
 
@@ -15,6 +16,7 @@ func main() {
 		dp[i] = dp[i-1] + a[i]
 	}
 
+	fmt.Println("dp=", dp)
 	fmt.Println(sumRange(0, 3, dp))
 	fmt.Println(sumRange(2, 4, dp))
 }
