@@ -5,6 +5,28 @@ import (
 )
 
 /*
+  Algorithm:
+  1. create dp matrix with extra top array and column zero
+  2. calculate presum of each column, 1st array is easy
+     for 2nd row: left sum of current column + top column
+     common logic for each row sum
+     for i := 1 ....
+        for j := 1 ...
+     		dp[i][j] = a[i-1][j-1] (current position i-1 and j-1 because dp has extra row and column)
+			           + dp[i][j-1](left sum)
+					   + dp[i-1][j] (top)
+					   - dp[i-1][j-1] -- because left corner item of dp item added extra in left sum
+
+  3. find total of (1,1) - (2, 2)
+     - (2,2) always contains sum of all rows column to (2,2)
+      so rest of items must be subracted
+      sum := dp[r2][c2] - dp[r1-1][c2]  - top of r1 and c2
+                        - dp[r2][c1-1]  - left of r2 and c1
+                        + dp[r1-1][c1-1] -  since corner item subtracted twice
+
+
+
+
 	{1, 2, 3},
 	{1, 2, 3},
 	{1, 2, 3},
@@ -21,14 +43,14 @@ import (
 	   0 0 0 0
 	   0	 1 3 6
 		2nd row
-		 current array + leftSum(dp) + top value(dp) - top left daigonal(dp)
+		 current item + leftSum(dp) + top value(dp) - top left daigonal(dp)
 	   0 2 6 12
 	   0	 3 9 18
-	
-   step3: 
-          
+
+   step3:
+
         	 	0 0    0 0
- 			0 [1]  3  6 <- 
+ 			0 [1]  3  6 <-
  			0 2    {6 12
  			0 3     9 18}
 			  ^
