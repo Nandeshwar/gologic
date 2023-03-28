@@ -32,6 +32,9 @@ func main() {
 	}
 	mp := maxPoints(a, len(a)-1, 3, dp) // 3 means no activity
 	fmt.Println("max points=", mp)
+
+	mp = maxPoints2(a)
+	fmt.Println(mp)
 }
 
 func maxPoints(a [][]int, day, lastActiviy int, dp [][]int) int {
@@ -68,4 +71,27 @@ func max(a, b int) int {
 		return a
 	}
 	return b
+}
+
+func maxPoints2(aa [][]int) int {
+	result := 0
+
+	previousI := -1
+	for _, a := range aa {
+		currentMax := 0
+		currentMaxI := 0
+		for i, v := range a {
+			if i == previousI {
+				continue
+			}
+
+			if v > currentMax {
+				currentMax = v
+				currentMaxI = i
+			}
+		}
+		result += currentMax
+		previousI = currentMaxI
+	}
+	return result
 }
