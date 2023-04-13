@@ -35,6 +35,8 @@ func main() {
 	allPaths(root, &paths, currentPath, sum)
 
 	fmt.Println(paths)
+
+	fmt.Println("Algorithm2=", allPaths2(root, []int{}, sum))
 }
 
 func allPaths(root *Tree, paths *[][]int, currentPath []int, sum int) {
@@ -50,4 +52,22 @@ func allPaths(root *Tree, paths *[][]int, currentPath []int, sum int) {
 
 	allPaths(root.left, paths, currentPath, sum-root.item)
 	allPaths(root.right, paths, currentPath, sum-root.item)
+
+}
+
+func allPaths2(root *Tree, currentPath []int, sum int) [][]int {
+	if root == nil {
+		return [][]int{}
+	}
+
+	var paths [][]int
+	currentPath = append(currentPath, root.item)
+	if root.item == sum && root.left == nil && root.right == nil {
+		paths = append(paths, currentPath)
+		return paths
+	}
+
+	left := allPaths2(root.left, currentPath, sum-root.item)
+	right := allPaths2(root.right, currentPath, sum-root.item)
+	return append(left, right...)
 }
