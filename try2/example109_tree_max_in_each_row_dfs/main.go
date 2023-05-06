@@ -16,7 +16,7 @@ type Node struct {
          9
         33
 
-  left leaves : 7 and 33 . so sum will be 40
+  map[1:10 2:8 3:9 4:33]
 */
 func main() {
 	nine := &Node{item: 9, left: &Node{item: 33}}
