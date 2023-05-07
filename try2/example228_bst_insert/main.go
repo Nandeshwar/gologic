@@ -49,6 +49,10 @@ func main() {
 	fmt.Println("Algo 2")
 	root = insertInBST2(root, 26)
 	root.display()
+
+	fmt.Println("Algo using loop")
+	insertInBSTLoop(root, 27)
+	root.display()
 }
 
 func insertInBST(root *Tree, newItem int) *Tree {
@@ -82,6 +86,31 @@ func insertInBST2(root *Tree, newItem int) *Tree {
 		root.left = insertInBST2(root.left, newItem)
 	} else {
 		root.right = insertInBST2(root.right, newItem)
+	}
+
+	return root
+}
+
+func insertInBSTLoop(root *Tree, newItem int) *Tree {
+	if root == nil {
+		return &Tree{item: newItem}
+	}
+
+	var parent *Tree
+	curr := root
+	for curr != nil {
+		parent = curr
+		if newItem < curr.item {
+			curr = curr.left
+		} else {
+			curr = curr.right
+		}
+	}
+
+	if newItem < parent.item {
+		parent.left = &Tree{item: newItem}
+	} else {
+		parent.right = &Tree{item: newItem}
 	}
 
 	return root
