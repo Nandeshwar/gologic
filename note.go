@@ -1,27 +1,29 @@
-class Solution {
-    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
-        Stack<Integer> stack = new Stack<>();
+import "container/list"
+func canVisitAllRooms(rooms [][]int) bool {
+    stack := list.New()
 
-        boolean[] visited = new boolean[rooms.size()]; 
-        visited[0] = true;
-        stack.push(0);
+    visited := make([]bool, len(rooms))
+    visited[0] = true
 
-        while(stack.size() != 0) {
-            int ind = stack.pop();
+    stack.PushBack(0)
 
-            for(Integer v : rooms.get(ind)) {
-                if(visited[v] == false) {
-                    visited[v] = true;
-                    stack.push(v);
-                }
+    for stack.Len() != 0 {
+        element := stack.Remove(stack.Back())
+        ind := element.(int)
+
+        for _, v := range rooms[ind] {
+            if visited[v] == false {
+                visited[v] = true
+                stack.PushBack(v)
             }
         }
-
-        for(boolean v: visited) {
-            if(v==false) {
-                return false;
-            }
-        }
-        return true;
     }
+
+    for _, v := range visited {
+        if v == false {
+            return false
+        }
+    }
+
+    return true
 }
