@@ -1,50 +1,27 @@
-func backspaceCompare(s string, t string) bool {
+class Solution {
+    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+        Stack<Integer> stack = new Stack<>();
 
-    if len(s) == 0 && len(t) == 0 {
-        return true
-    }
+        boolean[] visited = new boolean[rooms.size()]; 
+        visited[0] = true;
+        stack.push(0);
 
-    s1 := list.New()
-    s2 := list.New()
+        while(stack.size() != 0) {
+            int ind = stack.pop();
 
-    for _, v := range s {
-        if v == '#'  {
-            if s1.Len() > 0 {
-               s1.Remove(s1.Back())
+            for(Integer v : rooms.get(ind)) {
+                if(visited[v] == false) {
+                    visited[v] = true;
+                    stack.push(v);
+                }
             }
-           
-            continue
         }
-        s1.PushBack(v)
-    }
 
-    for _, v := range t {
-        if v == '#'  {
-            if s2.Len() > 0 {
-                s2.Remove(s2.Back())
+        for(boolean v: visited) {
+            if(v==false) {
+                return false;
             }
-           
-            continue
         }
-        s2.PushBack(v)
+        return true;
     }
-
-    if s1.Len() != s2.Len() {
-        return false
-    }
-
-   for s1.Len() > 0 {
-       element1 := s1.Remove(s1.Back())
-       l1 := element1.(rune)
-
-       element2 := s2.Remove(s2.Back())
-       l2 := element2.(rune)
-
-       if l1 != l2 {
-           return false
-       }
-
-   }
-
-    return true
 }
