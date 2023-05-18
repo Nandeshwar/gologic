@@ -7,7 +7,9 @@ import (
 func main() {
 	str1 := "abcde"
 	str2 := "acdefghij"
-	
+
+	// output: 3
+
 	/*
 		Algorithm
 		-----------
@@ -17,16 +19,17 @@ func main() {
 		   max of f(ind1-1, ind2), f(ind1, ind2-1)
 	*/
 
-	ind1 := len(str1) - 1
-	ind2 := len(str2) - 1
+	ind1 := len(str1)
+	ind2 := len(str2)
 
-	maxLen := max(len(str1), len(str2))
+	m := len(str1)
+	n := len(str2)
 
-	dp := make([][]int, maxLen)
+	dp := make([][]int, m+1)
 
-	for i := 0; i < maxLen; i++ {
-		dp[i] = make([]int, maxLen)
-		for j := 0; j < maxLen; j++ {
+	for i := 0; i <= m; i++ {
+		dp[i] = make([]int, n+1)
+		for j := 0; j <= n; j++ {
 			dp[i][j] = -1
 		}
 	}
@@ -44,11 +47,11 @@ func maxSubSequence(str1, str2 string, ind1, ind2 int, dp [][]int) int {
 		return dp[ind1][ind2]
 	}
 
-	if str1[ind1] == str2[ind2] {
+	if str1[ind1-1] == str2[ind2-1] {
 		return 1 + maxSubSequence(str1, str2, ind1-1, ind2-1, dp)
 	}
 
-	result := max(maxSubSequence(str1, str2, ind1-1, ind2, dp), maxSubSequence(str1, str2, ind1, ind2-1, dp))
+	result := max(maxSubSequence(str1, str2, ind1, ind2-1, dp), maxSubSequence(str1, str2, ind1-1, ind2, dp))
 	dp[ind1][ind2] = result
 	return result
 }
