@@ -24,11 +24,12 @@ import (
 func main() {
 	/*
 	   Longest common sequence:
-	     a b a c
-	   0 0 0 0 0
-	 c 0 0 0 0 1
-	 a 0 1 1 1 1
-	 b 0 1 2 2 2
+	     c a b  j
+	   0 0 0 0 
+i	 a 0 0 1 1 
+	 b 0 0 0 2 
+	 a 0 0 1 2 
+	 c 0 1 1 2
 
 	*/
 	str1 := "abac"
@@ -63,11 +64,12 @@ func main() {
 
 	/*
 	 Longest common sequence:
-	     a b a c
-	   0 0 0 0 0
-	 c 0 0 0 0 1
-	 a 0 1 1 1 1
-	 b 0 1 2 2 2
+	     c a b      <- j
+	   0 0 0 0 
+i	 a 0 0 1 1 
+	 b 0 0 0 2 
+	 a 0 0 1 2 
+	 c 0 1 1 2
 	
 	// output: cabac
 	*/
