@@ -49,6 +49,23 @@ tmpArr= [-1 4 5 6 9]
 func main() {
 	a := []int{1, 7, 8, 4, 5, 6, -1, 9}
 	fmt.Println(lis(a))
+	fmt.Println("algo2 = ", lis2(a, 0, 0))
+}
+
+func lis2(a []int, ind, cnt int) int {
+
+	if ind == len(a) {
+		return cnt
+	}
+
+	var cnt2 int
+	if ind+1 < len(a) && a[ind] < a[ind+1] {
+		cnt2 = lis2(a, ind+1, cnt+1)
+	}
+
+	cnt = lis2(a, ind+1, cnt)
+
+	return maxF(cnt2, cnt)
 }
 
 var max = 0
@@ -97,4 +114,11 @@ func putItemInSamePlaceOrRightAfterSmallerItem(tmpArr []int, item int) {
 	if beg == len(tmpArr)-1 {
 		max = tmpArr[beg]
 	}
+}
+
+func maxF(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
