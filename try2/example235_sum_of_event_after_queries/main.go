@@ -42,10 +42,10 @@ func sumOfEventAfterQueries(a []int, queries [][]int) []int {
 		i := at[1]
 		v := at[0]
 
-		if a[i]&1 == 0 {   // subtract old value if even
+		if a[i]&1 == 0 {   // subtract old value from SUM if even
 			sum -= a[i]   
 		}
-		a[i] += v   // add new value
+		a[i] += v   // add new value in array index
 
 		if a[i]&1 == 0 {  // if new value is even, add in result
 			sum += a[i]
