@@ -56,11 +56,13 @@ func main() {
 	fmt.Println(c2.get(1))
 	fmt.Println(c2.m)
 
+	fmt.Println("Algo 2......")
 	it := c2.m.Iterator()
+
 	for it.Next() {
 		fmt.Println(it.Value())
 	}
-	
+
 	fmt.Println(c2.m.Iterator())
 
 }
