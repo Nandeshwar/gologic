@@ -11,11 +11,17 @@ put(2,2): 2 will in front
 get(1,1) : 1 will in front
 
 
+Java:
+  LinkedHashMap can be used
+  - item will be inserted in front and insertion order will be preserved.
+
 */
 
 import (
 	"container/list"
 	"fmt"
+
+	"github.com/emirpasic/gods/maps/linkedhashmap"
 )
 
 type Pair struct {
@@ -29,6 +35,10 @@ type Cache struct {
 	size int
 }
 
+type Cache2 struct {
+	m *linkedhashmap.Map
+}
+
 func main() {
 	c := New(5)
 	c.put(1, 1)
@@ -38,6 +48,21 @@ func main() {
 
 	fmt.Println(c.get(1))
 	fmt.Println("front=", c.q.Front().Value)
+
+	c2 := New2()
+	c2.put(1, 1)
+	c2.put(2, 2)
+	c2.put(3, 3)
+	fmt.Println(c2.get(1))
+	fmt.Println(c2.m)
+
+	it := c2.m.Iterator()
+	for it.Next() {
+		fmt.Println(it.Value())
+	}
+	
+	fmt.Println(c2.m.Iterator())
+
 }
 
 func New(size int) *Cache {
@@ -71,4 +96,27 @@ func (c Cache) get(key int) int {
 	c.q.MoveBefore(pair.element, c.q.Front())
 
 	return pair.value
+}
+
+func New2() *Cache2 {
+	return &Cache2{m: linkedhashmap.New()}
+}
+
+func (c Cache2) put(key, value int) {
+
+	_, ok := c.m.Get(key)
+	if ok {
+		c.m.Remove(key)
+	}
+	c.m.Put(key, value)
+}
+
+func (c Cache2) get(key int) int {
+	value, ok := c.m.Get(key)
+	if ok {
+		c.m.Remove(key)
+		c.m.Put(key, value)
+	}
+
+	return value.(int)
 }
