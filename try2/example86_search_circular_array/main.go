@@ -20,9 +20,9 @@ func searchInCircularArray(a []int, item int) int {
 		}
 
 		// if true 1st portion is sorted,  else 2nd portion is sorted
-		if a[beg] < a[mid] {
+		if a[beg] <= a[mid] {
 			// if item is withing 1st portion
-			if item >= a[beg] && item < a[mid] {
+			if item >= a[beg] && item <= a[mid] {
 				end = mid - 1
 			} else {
 				beg = mid + 1
@@ -30,7 +30,7 @@ func searchInCircularArray(a []int, item int) int {
 
 		} else {
 			// if item is in 2nd sorted portion
-			if item > a[mid] && item <= a[end] {
+			if item >= a[mid] && item <= a[end] {
 				beg = mid + 1
 			} else {
 				end = mid - 1
