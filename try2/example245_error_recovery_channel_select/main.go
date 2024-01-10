@@ -2,18 +2,31 @@ package main
 
 import (
 	"fmt"
+	"strconv"
+	"time"
 )
 
 func main() {
 	fmt.Println("Hello World")
 	selectChannelExample()
 
-	m := make(map[string]string)
-	k := fmt.Sprintf("%d", 60)
-	m[k] = "nks"
-	k2 := fmt.Sprintf("%s", "60")
-	v, _ := m[k2]
-	fmt.Println(v)
+	go func() {
+
+		defer func() {
+			if arg := recover(); arg != nil {
+				fmt.Println(arg)
+			}
+		}()
+
+		b, _ := strconv.Atoi("0")
+		s := 1 / b
+		fmt.Println("this is go routine1")
+		fmt.Println(s)
+
+	}()
+
+	time.Sleep(1 * time.Second)
+	fmt.Println("end of the program")
 }
 
 func selectChannelExample() {
