@@ -32,4 +32,33 @@ func main() {
 		}
 		fmt.Println()
 	}
+
+	fmt.Println("------------")
+	pattern2()
+}
+
+func pattern2() {
+	/*
+		Hello World
+		E
+		DE
+		CDE
+		BCDE
+		ABCDE
+	*/
+	fmt.Println("Hello World")
+	n := 5
+
+	for i := 0; i < n; i++ {
+		var b int32
+		b = int32(n - i - 1)
+		a := 'A'
+		a = a + b
+		for j := 0; j <= i; j++ {
+			fmt.Print(string(a))
+			a++
+		}
+		fmt.Println()
+	}
+
 }
