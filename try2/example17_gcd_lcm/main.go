@@ -5,8 +5,9 @@ import (
 )
 
 func main() {
-	fmt.Println(findGcd1(8, 12)) // expectation 4
-	fmt.Println(findGcd1(5, 7))  // expectation 1
+	fmt.Println(findGcd1(8, 12))  // expectation 4
+	fmt.Println(findGcd11(8, 12)) // expectation 4
+	fmt.Println(findGcd1(5, 7))   // expectation 1
 
 	fmt.Println(findLcm(8, 12)) // expectation 24
 
@@ -43,6 +44,24 @@ func findGcd2(a, b int) int {
 		a = a ^ b
 	}
 	return findGcd2(a-b, b)
+}
+
+func findGcd11(a, b int) int {
+	for a != 0 && b != 0 {
+		if b != 0 {
+			a = a % b
+		}
+		if a != 0 {
+			b = b % a
+		}
+	}
+	if a == 0 {
+		return b
+	}
+	if b == 0 {
+		return a
+	}
+	return 0
 }
 
 // brute force
