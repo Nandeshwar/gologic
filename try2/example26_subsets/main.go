@@ -34,6 +34,17 @@ func findSubsets3(input string, i int, result string) {
 	appendedResult := result + string(input[i])
 	findSubsets3(input, i+1, appendedResult)
 	findSubsets3(input, i+1, result)
+	f1(input, 0, "", "")
+}
+
+func f1(str string, ind int, result, curr string) {
+	fmt.Println(curr)
+	for i := ind; i < len(str); i++ {
+
+		curr += string(str[i])
+		f1(str, i+1, result, curr)
+		curr = curr[0 : len(curr)-1]
+	}
 }
 
 func findSubsets(input []rune, i int, result []string) {
