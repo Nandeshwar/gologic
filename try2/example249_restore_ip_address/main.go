@@ -40,6 +40,32 @@ func generateIpAddress(i, dot int, currIp, s string, result *[]string) {
 
 }
 
+func generateIpAddress2(i, dot int, currIp, s string, result *[]string) {
+	if dot == 4 && i == len(s) {
+		lastIndexOfDot := strings.LastIndex(currIp, ".")
+		*result = append(*result, currIp[0:lastIndexOfDot])
+		return
+	}
+
+	if dot > 4 {
+		return
+	}
+
+	for j := i; j < Min(i+3, len(s)); j++ {
+		eachIpSectionStr := s[i : j+1]
+		eachIpSectionInt, _ := strconv.Atoi(eachIpSectionStr)
+		if eachIpSectionInt > 255 {
+			return
+		}
+		if len(eachIpSectionStr) > 1 && eachIpSectionStr[0] == '0' {
+			return
+		}
+
+		generateIpAddress(j+1, dot+1, currIp+eachIpSectionStr+".", s, result)
+
+	}
+
+}
 func Min(a, b int) int {
 	if a < b {
 		return a
