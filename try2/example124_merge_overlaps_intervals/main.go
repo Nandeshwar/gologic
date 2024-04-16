@@ -16,6 +16,8 @@ func main() {
 		{12, 13},
 		{14, 15},
 	}
+	// output:
+	// [[1 5] [6 11] [12 13] [14 15]]
 
 	mergedOverlaps := mergeOverlaps(a)
 	fmt.Println("mergedOverlaps=", mergedOverlaps)
