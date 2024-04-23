@@ -1,47 +1,58 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
 func main() {
-	fmt.Println(stockBuySellProfitAlgo1([]int{5, 1, 8})) // expectation 7
-	fmt.Println(stockBuySellProfitAlgo2([]int{5, 1, 8}))
+	/*
+	   	Example 1:
+
+	      Input: prices = [7,1,5,3,6,4]
+	      Output: 5
+
+	*/
+
+	fmt.Println(maxProfit([]int{7, 1, 5, 3, 6, 4}))
+}
+func maxProfit(prices []int) int {
+
+	m := 0
+	min := prices[0]
+	for i := 1; i < len(prices); i++ {
+		min = Min(min, prices[i])
+
+		benefits := prices[i] - min
+		m = Max(m, benefits)
+	}
+	return m
+
+	/* Running example two pointers
+	   l := 0
+	   r := 1
+
+	   m := 0
+	   for r < len(prices) {
+	       m = Max(m, prices[r]-prices[l])
+	       if prices[l] > prices[r] {
+	           l++
+	       } else {
+	            r++
+	       }
+
+	   }
+	   return m
+	*/
 }
 
-// each value in array represents stock buy and sell
-// find profit
-// preprocessing: find max value from right side
-// then find max benefit
-// o(n) but uses spaces
-func stockBuySellProfitAlgo1(arr []int) int {
-	maxProfit := 0
-
-	maxFromRight := make([]int, len(arr)) // for preprocessing
-	max := arr[len(arr)-1]
-
-	for i := len(arr) - 1; i >= 0; i-- {
-		max = int(math.Max(float64(max), float64(arr[i])))
-		maxFromRight[i] = max
-
-		profit := maxFromRight[i] - arr[i]
-		maxProfit = int(math.Max(float64(maxProfit), float64(profit)))
+func Max(a, b int) int {
+	if a > b {
+		return a
 	}
-	return maxProfit
+	return b
 }
 
-// o(n)
-// find minimum for each index
-// profit = currVal - min
-func stockBuySellProfitAlgo2(arr []int) int {
-	maxProfit := 0
-	min := arr[0]
-	for i := 0; i < len(arr); i++ {
-		min = int(math.Min(float64(min), float64(arr[i])))
-
-		profit := arr[i] - min
-		maxProfit = int(math.Max(float64(maxProfit), float64(profit)))
+func Min(a, b int) int {
+	if a < b {
+		return a
 	}
-	return maxProfit
+	return b
 }
